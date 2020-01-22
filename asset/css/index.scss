@@ -1,0 +1,598 @@
+@charset "utf-8";
+@import "_var", "_mixin";
+
+@font-face {
+    font-family : "NotoSans";
+    font-weight : 400;
+    src : url("../fonts/NotoSansKR-Regular.eot");
+    src : local("※"),
+    url("../fonts/NotoSansKR-Regular.woff2") format("woff2"),
+    url("../fonts/NotoSansKR-Regular.woff") format("woff"),
+    url("../fonts/NotoSansKR-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family : "NotoSans";
+    font-weight : 500;
+    src : url("../fonts/NotoSansKR-Medium.eot");
+    src : local("※"),
+    url("../fonts/NotoSansKR-Medium.woff2") format("woff2"),
+    url("../fonts/NotoSansKR-Medium.woff") format("woff"),
+    url("../fonts/NotoSansKR-Medium.otf") format("opentype");
+}
+@font-face {
+    font-family : "NotoSans";
+    font-weight : 600;
+    src : url("../fonts/NotoSansKR-Bold.eot");
+    src : local("※"),
+    url("../fonts/NotoSansKR-Bold.woff2") format("woff2"),
+    url("../fonts/NotoSansKR-Bold.woff") format("woff"),
+    url("../fonts/NotoSansKR-Bold.otf") format("opentype");
+}
+body, h1, h2, h3, h4, h5, h6, ul, p, button {
+    margin : 0px;
+    padding : 0px;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size : inherit;
+    color : inherit;
+    font-weight : inherit;
+}
+ul {
+    list-style : none;
+}
+a:link, a:visited, a:hover, a:active {
+    color : inherit;
+    text-decoration : none;
+}
+button {
+    border : none;
+    background : none;
+    cursor : pointer;
+    font-size : inherit;
+    font-family : inherit;
+    font-weight : inherit;
+}
+img {
+    vertical-align : top;
+    border : none;
+    max-width : 100%;
+}
+header, nav, section, footer {
+    display : block;
+}
+strong {
+    font-weight : inherit;
+}
+
+.sr-only {
+    position : absolute;
+    left : -9999px;
+    top : 0px;
+}
+.clearfix:after {
+    content : "";
+    display : block;
+    clear : both;
+}
+.po-absol {
+    position : absolute;
+}
+.po-relat {
+    position : relative;
+}
+:root {
+    --mainColor : #7ec6c5;
+}
+
+
+body {
+    @include transition(color 0.5s, background 0.5s);
+    font-family : "NotoSans";
+    font-weight : 400;
+    font-size : 18px;
+    color : var(--mainColor);
+}
+#skip a {
+    @include transition(background 0.5s);
+    position : absolute;
+    left : -9999px;
+    top : 0px;
+    z-index : 800;
+    text-align : center;
+    width : 100%;
+    height : 60px;
+    line-height : 60px;
+    color : #fff;
+    background : var(--mainColor);
+}
+#skip a:focus {
+    left : 0px;
+}
+h2 {
+    font-size : 45px;
+    font-weight : 600;
+    margin-bottom : 50px;
+}
+h3 {
+    font-size : 30px;
+    font-weight : 500;
+    margin-bottom : 40px;
+}
+/* fixed */
+#color-change-btn,
+#indicator {
+    position : fixed;
+    z-index : 799;
+}
+#color-change-btn {
+    left : 30px;
+    bottom : 30px;
+    .color-btn-active span,
+    .color-black,
+    .color-blue,
+    .color-red {
+        /* opacity : 0; */
+        position : absolute;
+        width : 15px;
+        height : 15px;
+        border-radius : 50%;
+    }
+    .color-btn-active {
+        position : absolute;
+        width : 15px;
+        height : 15px;
+        left : 0px;
+        top : 0px;
+        span:nth-child(1) {
+            background : rgba(51, 52, 53,0.9);
+            left : 0px;
+            top : 0px;
+        }
+        span:nth-child(2) {
+            background :rgba(126, 198, 197,0.9);
+            left : 4px;
+            top : -5px;
+        }
+        span:nth-child(3) {
+            background :rgba(203, 101, 134,0.9);
+            left : 8px;
+            top : 0px;
+        }
+        &.active ~ button {
+            opacity : 1;
+            z-index : 800;
+        }
+        &.active ~ .color-black {
+            background : $mainBlack;
+            left : 5px;
+            top : -50px;
+        }
+        &.active ~ .color-blue {
+            background :$mainBlue;
+            left : 30px;
+            top : -30px;
+        }
+        &.active ~ .color-red {
+            background :$mainRed;
+            left : 40px;
+        }
+    }
+    .color-black, .color-blue, .color-red {
+        @include transition(all 0.3s);
+        left : 3px;
+        top : -2px;
+        opacity : 0;
+        z-index : -1;
+    }
+    .color-black {
+        background : $mainBlack;
+    }
+    .color-blue {
+        background :$mainBlue;
+    }
+    .color-red {
+        background :$mainRed;
+    }
+    
+}
+#fixed-line {
+    .deco-line {
+        @include transition(background 0.5s);
+        position : absolute;
+        width : 3px;
+        background : var(--mainColor);
+        height : 360px;
+    }
+    .deco-line1 {
+        left : 50%;
+        top : 210px;
+        height : 650px;
+    }
+    .deco-line2 {
+        left : 50%;
+        top : 210px;
+        height : 650px
+    }
+    .deco-line3 {
+        display : none;
+        left : 1635px;
+        top : 270px;
+        height : 510px;
+    }
+    .deco-line4 {
+        display : none;
+        left : 2246px;
+        top : 240px;
+        height : 600px;
+    } 
+}
+#indicator {
+    top : 50%;
+    left : 20px;
+    margin-top : -67.5px;
+    a {
+        @include borderRadius(50%);
+        @include boxSizing;
+        @include transition(transform 0.6s,color 0.5s, background 0.5s);
+        position : relative;
+        display : block;
+        width : 15px;
+        height : 15px;
+        margin-bottom : 15px;
+        border : 3px solid $gray;
+        &:after {
+
+        }
+        &:hover, &:focus {
+            @include transform(scale(1.2));
+            & div {
+                width : 110px;
+                opacity : 1;
+            }
+        }
+        div {
+            @include transition(all 0.6s);
+            @include borderRadius(10px);
+            position : absolute;
+            left : 20px;
+            top : -5px;
+            background : var(--mainColor);
+            color : #fff;
+            font-size : 12px;
+            opacity : 0;
+            width : 0px;
+            height : 20px;
+            line-height : 20px;
+            text-align : center;
+        }
+    }
+    a:last-child {
+        margin-bottom : 0px;
+    }
+    a.active {
+        background : var(--mainColor);
+        border-color : var(--mainColor);
+    }
+}
+
+
+/* cnt */
+#cnt-wrap {
+    overflow : hidden;
+}
+#cnt-wrap, #intro, #contents,
+#project, #webAcce, #aboutMe {
+    width : 100vw;
+    height : 100vh;
+}
+#intro {
+    position : relative;
+    .fillbg {
+        @include transition(opacity 0.8s, background 0.5s);
+        background : var(--mainColor);
+        position : absolute;
+    }
+    div:nth-child(1), div:nth-child(2), div:nth-child(3) {
+        width : 0vw;
+        height : 50vh;
+    }
+    div:nth-child(1) {
+        left : 0%;
+        top : 0%;
+    }
+    div:nth-child(2) {
+        left : 50%;
+        top : 0%;
+    }
+    div:nth-child(3) {
+        right : 50%;
+        top : 50%;
+    }
+    div:nth-child(4) {
+        left : 50%;
+        top : 50%;
+        width : 50vw;
+        height : 0vh;
+    }
+    .txt-ani {
+        left : 50%;
+        top : 50%;
+        margin : -10vh 0px 0px -20vw;
+        width : 40vw;
+        height : 20vh;
+        color : #fff;
+        font-size : 70px;
+        text-align : center;
+        span {
+            @include transition(all 0.8s);
+            opacity : 0;
+        }
+    }
+    .intro-down-arr {
+        @include borderRadius(15px);
+        @include boxSizing;
+        bottom : 60px;
+        left : calc(50% - 10px);
+        width : 30px;
+        height : 50px;
+        border : 1px solid $gray;
+        svg {
+            @include animation(scrolldown 1.2s 5s infinite);
+            fill : none;
+            stroke : $gray;
+            stroke-width : 1px;
+            
+            margin-left : -1px;
+        }
+        .arr-down {
+            @include animation(lineAni 1s 4s linear 1 both);
+            stroke-dasharray : 28.284271240234375;
+            stroke-dashoffset : 28.284271240234375;
+        }
+    }
+}
+#contents {
+    display : none;
+    .hor {
+        position : relative;
+        width : 200vw;
+        height : 100vh;
+        overflow : hidden;
+        > div {
+            position : absolute;
+            ul {
+                color : $black;
+                li {
+                    padding-bottom : 30px;
+                    &:last-child {
+                        padding-bottom : 0px;
+                    }
+                }
+            }
+        }
+        .cnt-project {
+            left : 497px;
+            top : 310px;
+            .margin30 {
+                margin-bottom : 30px;
+            }
+        }
+        .cnt-skills {
+            left : 1064px;
+            top : 211px;
+        }
+        .cnt-webAcce {
+            left : 1665px;
+            top : 368px;
+        }
+        .cnt-about {
+            left : 2276px;
+            top : 300px;
+        }
+        .cnt-skills, .cnt-about {
+            ul {
+                @include transition(color 0.5s, background 0.5s);
+                font-size : 30px;
+                color : var(--mainColor);
+            }
+        }
+    }
+}
+#project {
+    display : none;
+    > div {
+        float : left;
+        width : 50vw;
+        height : 100vh;
+    }
+    .project-txt-area {
+        display : table;
+        .project-common {
+            position : relative;
+            display : table-cell;
+            vertical-align : middle;
+            padding-left : 12vw;
+            padding-bottom : 120px;
+            ~.project-common {
+                display : none;  
+            }
+        }
+        p {
+            margin-bottom : 100px;
+            color : $black;
+        }
+        a {
+            @include transition(color 0.5s, background 0.5s);
+            @include borderRadius(5px);
+            @include boxSizing;
+            display : inline-block;
+            width : 100px;
+            height : 50px;
+            line-height : 50px;
+            margin-left : 10em;
+            text-align : center;
+            border : 1px solid var(--mainColor);
+        }
+    }
+    .project-modal-area {
+        @include boxSizing;
+        position : relative;
+        padding : 10vh 0px;
+        text-align : center;
+        h2 {
+            position : absolute;
+            left : 40%;
+            top : 2%;
+            font-size : 30px;
+            margin-bottom : 0px;
+        }
+        .modal-btn {
+            @include transition(all 0.2s);
+            @include boxSizing;
+            float : left;
+            width : 25vw;
+            height : 40vh;
+            background : #fff;
+            border-bottom : 1px solid #eee;
+            &:hover, &:focus {
+                @include transform(scale(1.05));
+                @include boxShadow(0px 0px 8px $gray);
+            }
+            p {
+                padding : 20px 0px 30px;
+                font-size : 22px;
+                color : $black;
+            }
+            img {
+                width : 100%;
+                height : auto; 
+            }
+        }
+    }
+}
+#webAcce {
+    display : none;
+    h2 {
+        position : fixed;
+        left : 0px;
+        top : 0px;
+        margin-bottom : 0px;
+    }
+    > div {
+        float : left;
+        width : 50vw;
+        height : 100vh;
+    }
+    .web-txt-area {
+        display : flex;
+        flex-wrap : wrap;
+        justify-content : center;
+        align-items : center;
+        .web-txt-common {
+            margin-bottom : 8em;
+            h3, strong, p {
+                color : $black;
+            }
+            h3 {
+                font-size : 30px;
+                text-align : center;
+                margin-bottom : 60px;
+            }
+            strong {
+                font-size : 20px;
+                display : block;
+                margin-bottom : 60px;
+            }
+            p + p {
+                margin-top : 40px;
+            }
+        }
+        #acceBtn {
+            position : absolute;
+            bottom : 10rem;
+            button {
+                @include transition(color 0.5s, background 0.5s);
+                @include borderRadius(10px);
+                width : 40px;
+                height : 40px;
+                margin-left : 63px;
+                &.active {
+                    color : #fff;
+                    background : var(--mainColor);
+                }
+            }
+            button:first-child {
+                margin-left : 0px;
+            }
+        }
+    }
+    .web-slide-area {
+
+    }
+    
+}
+#aboutMe {
+    display : none;
+    position : relative;
+    div {
+        position : absolute;
+        left : calc(50% - 400px);
+        top : calc(50% - 105px);
+        ul {
+            text-align : center;
+            li {
+                width : 800px;
+                height : 70px;
+                strong,span {
+                    float : left;
+                    line-height : 70px;
+                }
+                strong {
+                    text-align : left;
+                    font-size : 30px;
+                    padding-right : 60px;
+                    width : 180px;
+                    
+                }
+                span {
+                    font-size : 22px;
+                    color : $black;
+                }
+                &:first-child span {
+                    line-height : 1.5;
+                }
+            }
+        }
+    
+    }
+}
+
+@include keyframes(scrolldown) {
+    0%{
+        margin-top : 0px;
+    }
+    50% {
+        margin-top : 5px;
+    }
+    100% {
+        margin-top : -1px;
+    }
+}
+@include keyframes(lineAni) {
+    0% {
+        stroke-dashoffset : 28.284271240234375;
+    }
+    100% {
+        stroke-dashoffset : 0;
+    }
+}
+
+@media all and (max-width : 1260) {
+
+}
+@media all and (max-width : 760) {
+
+}
+@media all and (max-width : 480) {
+
+}
