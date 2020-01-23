@@ -68,6 +68,11 @@ strong {
 :root {
   --mainColor: #7ec6c5; }
 
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
 body {
   -webkit-transition: color 0.5s, background 0.5s;
   -moz-transition: color 0.5s, background 0.5s;
@@ -83,7 +88,7 @@ body {
   -moz-transition: background 0.5s;
   -o-transition: background 0.5s;
   transition: background 0.5s;
-  position: absolute;
+  position: fixed;
   left: -9999px;
   top: 0px;
   z-index: 800;
@@ -257,13 +262,10 @@ h3 {
     border-color: var(--mainColor); }
 
 /* cnt */
-#cnt-wrap {
-  overflow: hidden; }
-
-#cnt-wrap, #intro, #contents,
+#container, #cnt-wrap, #intro, #contents,
 #project, #webAcce, #aboutMe {
-  width: 100vw;
-  height: 100vh; }
+  width: 100%;
+  height: 100%; }
 
 #intro {
   position: relative; }
@@ -317,14 +319,14 @@ h3 {
     left: calc(50% - 10px);
     width: 30px;
     height: 50px;
-    border: 1px solid #aaaaaa; }
+    border: 1px solid var(--mainColor); }
     #intro .intro-down-arr svg {
       -webkit-animation: scrolldown 1.2s 5s infinite;
       -moz-animation: scrolldown 1.2s 5s infinite;
       -o-animation: scrolldown 1.2s 5s infinite;
       animation: scrolldown 1.2s 5s infinite;
       fill: none;
-      stroke: #aaaaaa;
+      stroke: var(--mainColor);
       stroke-width: 1px;
       margin-left: -1px; }
     #intro .intro-down-arr .arr-down {
@@ -337,11 +339,63 @@ h3 {
 
 #contents {
   display: none; }
+  #contents > p {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    opacity: 0;
+    position: fixed;
+    left: calc(50% - 125px);
+    width: 250px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background: var(--mainColor); }
+    #contents > p.active {
+      opacity: 1; }
+  #contents .prev-txt {
+    -webkit-border-radius: 0px 0px 20px 20px;
+    -moz-border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 20px 20px;
+    top: 0px; }
+  #contents .next-txt {
+    -webkit-border-radius: 20px 20px 0px 0px;
+    -moz-border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 20px 0px 0px;
+    bottom: 0px; }
+  #contents .scroll-border {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-transition: opacity 0.6s;
+    -moz-transition: opacity 0.6s;
+    -o-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+    position: fixed;
+    left: calc(50% - 50px);
+    bottom: 50px;
+    width: 100px;
+    height: 5px;
+    border: 1px solid var(--mainColor); }
+    #contents .scroll-border .scroll-fill {
+      -webkit-transition: width 0.6s;
+      -moz-transition: width 0.6s;
+      -o-transition: width 0.6s;
+      transition: width 0.6s;
+      display: block;
+      width: 5%;
+      height: 3px;
+      background: var(--mainColor); }
   #contents .hor {
     position: relative;
-    width: 200vw;
-    height: 100vh;
-    overflow: hidden; }
+    width: 150%;
+    height: 100%; }
     #contents .hor > div {
       position: absolute; }
       #contents .hor > div ul {

@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    var $intro = $("#intro");
-    var $contents = $("#contents");
-    var $project = $("#project");
-    var $webAcce = $("#webAcce");
-    var $aboutMe = $("#aboutMe");
-
     var $FillDiv = $("#intro .fillbg");
     var $IntroTxt = $("#intro .txt-ani").children();
     var introArray = new Array($IntroTxt.size());
@@ -12,17 +6,17 @@ $(document).ready(function () {
     var $indicator = $("#indicator").children();
     
     var articleLength = $("#cnt-wrap article").length;
-    var winWidth;
-    var ContentsWidth;
+    var $ContentsWidth = $("#contents").outerWidth(true);
     
     var resizeTimer = 0;
     var introTimer = 0;
     var contentsTimer = 0;
-    var scrollX = 0;
+    var wheelTimer = 0;
 
     var $mainBlack = "#333435";
     var $mainBlue = "#7ec6c5";
     var $mainRed = "#cb6586";
+    
     // Intro
     function introAni() {
         // line1, 2 최초 위치 저장
@@ -71,12 +65,24 @@ $(document).ready(function () {
     }
     introAni();
     
-    // resize width()
-    $(window).on("resize", function() {
-        winWidth = $(window).width();
-        ContentsWidth = $("#contents").outerWidth();
-        
-    });
+    // Common Wheel Event
+    function wheelCtrl() {
+        $("#cnt-wrap article").on("mousewheel DOMMouseScroll", function(e) {
+            clearTimeout(wheelTimer);
+            wheelTimer = setTimeout(function () {
+                if($("#cnt-wrap article").is(":animated")) return false;
+                var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
+                if(delta > 0) { // 휠방향 위
+                    $(this).removeClass("active").stop().fadeOut().prev().addClass("active").stop().fadeIn();
+                }
+                else if(delta < 0) { // 휠방향 아래
+                    $(this).removeClass("active").stop().fadeOut().next().addClass("active").stop().fadeIn();
+                }
+            });
+        });
+
+    }
+    
 
     // 테마컬러 변경 버튼 활성화
     $("#color-change-btn .color-btn-active span").on("click", function() {
@@ -108,25 +114,23 @@ $(document).ready(function () {
         target.stop().fadeIn();
         $(this).addClass("active").siblings().removeClass("active");
             if($(this).index() == 0) introAni();
-        
-        
     });
-    // intro wheel 내렸을때 화면이동
+
+    // Intro Wheel Event
     $("#intro").on("mousewheel DOMMouseScroll", function(e) {
         clearTimeout(introTimer);
         introTimer = setTimeout(function () {
-            if($("#intro").is(":animated")) return false;
             var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
             if (delta < 0) {
                 $("#intro").stop().fadeOut();
                 $("#cnt-wrap").css("overflow","visible");
                 $line.eq(0).stop().animate({
-                    left : "24%",
+                    left : "467px",
                     top : "300px",
                     height : "520px"
                 });
                 $line.eq(1).stop().animate({
-                    left : "53.5%",
+                    left : "1034px",
                     top : "191px",
                     height : "620px"
                 });
@@ -147,35 +151,21 @@ $(document).ready(function () {
         });
     });
 
-    // contents wheel event
     $("#contents").on("mousewheel DOMMouseScroll", function(e) {
         clearTimeout(contentsTimer);
         contentsTimer = setTimeout(function() {
+            var scrollX = $(window).scrollLeft();
             var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
             if(delta > 0 && articleLength > 0) {
-                $("#contents .hor, .deco-line").stop().animate({marginLeft : scrollX+=120},50,"easeOutCubic",function() {
-                    if(scrollX > 0) {
-                        $(this).stop().animate({marginLeft : 0});
-                        $contents.find(".prev-txt").addClass("active");
-                        setTimeout(function() {
-                            scrollX = 0;
-                        },50);
-                    }
-                });
-                console.log(scrollX);
+                $("html, body").stop().animate({scrollLeft : scrollX-delta*2});
             }
             else if(delta < 0) {
-                $("#contents .hor, .deco-line").stop().animate({marginLeft : scrollX-=120},50,"easeOutCubic");
-                console.log(scrollX);
+                $("html, body").stop().animate({scrollLeft : scrollX+delta*-2});
             }
             if(delta < 0 && scrollX == ($(document).width() - $(window).width())) {
-
+                
             }
-            if(delta > 0 && scrollX == ($(document))) {
-                $()
-            }
-        },30);
-        
+        },30)
+        console.log($(document).width(),$(".hor").outerWidth(), scrollX,$(document).width() - $(window).width());
     });
-    
 });
