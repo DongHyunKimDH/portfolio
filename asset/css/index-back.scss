@@ -80,15 +80,25 @@ strong {
 .po-relat {
     position : relative;
 }
+:root {
+    --mainColor : #7ec6c5;
+}
 
+body, html {
+    width : 100%;
+    height : 100%;
+    overflow : hidden;
+}
 body {
+    @include transition(color 0.5s, background 0.5s);
     font-family : "NotoSans";
     font-weight : 400;
     font-size : 18px;
-    color : $mainBlue;
+    color : var(--mainColor);
 }
 #skip a {
-    position : absolute;
+    @include transition(background 0.5s);
+    position : fixed;
     left : -9999px;
     top : 0px;
     z-index : 800;
@@ -97,7 +107,7 @@ body {
     height : 60px;
     line-height : 60px;
     color : #fff;
-    background : $mainBlue;
+    background : var(--mainColor);
 }
 #skip a:focus {
     left : 0px;
@@ -152,47 +162,70 @@ h3 {
             left : 8px;
             top : 0px;
         }
+        &.active ~ button {
+            opacity : 1;
+            z-index : 800;
+        }
+        &.active ~ .color-black {
+            background : $mainBlack;
+            left : 5px;
+            top : -50px;
+        }
+        &.active ~ .color-blue {
+            background :$mainBlue;
+            left : 30px;
+            top : -30px;
+        }
+        &.active ~ .color-red {
+            background :$mainRed;
+            left : 40px;
+        }
+    }
+    .color-black, .color-blue, .color-red {
+        @include transition(all 0.3s);
+        left : 3px;
+        top : -2px;
+        opacity : 0;
+        z-index : -1;
     }
     .color-black {
-        background : #333435;
-        top : -50px;
-        left : 5px;
+        background : $mainBlack;
     }
     .color-blue {
-        background :#7ec6c5;
-        top : -30px;
-        left : 30px;
-    
+        background :$mainBlue;
     }
     .color-red {
-        background :#cb6586;
-        left : 40px;
+        background :$mainRed;
     }
     
 }
 #fixed-line {
     .deco-line {
+        @include transition(background 0.5s);
         position : absolute;
         width : 3px;
-        background : $mainBlue;
+        background : var(--mainColor);
         height : 360px;
+        z-index : 500;
     }
     .deco-line1 {
-        left : 467px;
-        top : 300px;
-        height : 480px;
+        left : 50%;
+        top : 210px;
+        height : 650px;
     }
     .deco-line2 {
-        left : 1034px;
-        top : 191px;
-        height : 720px
+        left : 50%;
+        top : 210px;
+        height : 650px
     }
     .deco-line3 {
+        display : none;
         left : 1635px;
         top : 270px;
         height : 510px;
     }
     .deco-line4 {
+        display : none;
         left : 2246px;
         top : 240px;
         height : 600px;
@@ -205,7 +238,7 @@ h3 {
     a {
         @include borderRadius(50%);
         @include boxSizing;
-        @include transition(transform 0.6s);
+        @include transition(transform 0.6s,color 0.5s, background 0.5s);
         position : relative;
         display : block;
         width : 15px;
@@ -213,51 +246,76 @@ h3 {
         margin-bottom : 15px;
         border : 3px solid $gray;
         &:after {
-            @include transition(opacity 0.6s);
-            @include borderRadius(10px);
-            content : "";
-            position : absolute;
-            left : 20px;
-            top : -5px;
-            background : $mainBlue;
-            color : #fff;
-            font-size : 12px;
-            opacity : 0;
-            width : 110px;
-            height : 20px;
-            line-height : 20px;
-            text-align : center;
+
         }
         &:hover, &:focus {
             @include transform(scale(1.2));
-            &:after {
+            & div {
+                width : 110px;
                 opacity : 1;
             }
+        }
+        div {
+            @include transition(all 0.6s);
+            @include borderRadius(10px);
+            position : absolute;
+            left : 20px;
+            top : -5px;
+            background : var(--mainColor);
+            color : #fff;
+            font-size : 12px;
+            opacity : 0;
+            width : 0px;
+            height : 20px;
+            line-height : 20px;
+            text-align : center;
         }
     }
     a:last-child {
         margin-bottom : 0px;
     }
     a.active {
-        background : $mainBlue;
-        border-color : $mainBlue;
+        background : var(--mainColor);
+        border-color : var(--mainColor);
     }
 }
 
 
 /* cnt */
-#cnt-wrap, #intro, #contents,
+
+#container, #cnt-wrap, #intro, #contents,
 #project, #webAcce, #aboutMe {
-    width : 100vw;
-    height : 100vh;
+    width : 100%;
+    height : 100%;
 }
 #intro {
-    display : none;
+    position : relative;
     .fillbg {
-        width : 50vw;
+        @include transition(opacity 0.8s, background 0.5s);
+        background : var(--mainColor);
+        position : absolute;
+    }
+    div:nth-child(1), div:nth-child(2), div:nth-child(3) {
+        width : 0vw;
         height : 50vh;
-        background : $mainBlue;
-        float : left;
+    }
+    div:nth-child(1) {
+        left : 0%;
+        top : 0%;
+    }
+    div:nth-child(2) {
+        left : 50%;
+        top : 0%;
+    }
+    div:nth-child(3) {
+        right : 50%;
+        top : 50%;
+    }
+    div:nth-child(4) {
+        left : 50%;
+        top : 50%;
+        width : 50vw;
+        height : 0vh;
     }
     .txt-ani {
         left : 50%;
@@ -268,6 +326,10 @@ h3 {
         color : #fff;
         font-size : 70px;
         text-align : center;
+        span {
+            @include transition(all 0.8s);
+            opacity : 0;
+        }
     }
     .intro-down-arr {
         @include borderRadius(15px);
@@ -276,23 +338,69 @@ h3 {
         left : calc(50% - 10px);
         width : 30px;
         height : 50px;
-        border : 1px solid $gray;
+        border : 1px solid var(--mainColor);
         svg {
+            @include animation(scrolldown 1.2s 5s infinite);
             fill : none;
-            stroke : $gray;
+            stroke : var(--mainColor);
             stroke-width : 1px;
             margin-left : -1px;
+        }
+        .arr-down {
+            @include animation(lineAni 1s 4s linear 1 both);
+            stroke-dasharray : 28.284271240234375;
+            stroke-dashoffset : 28.284271240234375;
         }
     }
 }
 #contents {
     display : none;
-    background : #888;
-    // overflow : hidden;
+    > p {
+        @include transition(all 0.4s);
+        opacity : 0;
+        position : fixed;
+        left : calc(50% - 125px);
+        width : 250px;
+        height : 30px;
+        line-height : 30px;
+        text-align : center;
+        font-size : 14px;
+        color : #fff;
+        background : var(--mainColor);
+        &.active {
+            opacity : 1;
+        }
+    }
+    .prev-txt {
+        @include borderRadius(0px 0px 20px 20px);
+        top : 0px;
+    }
+    .next-txt {
+        @include borderRadius(20px 20px 0px 0px);
+        bottom : 0px;
+    }
+    .scroll-border {
+        @include boxSizing;
+        @include borderRadius(20px);
+        @include transition(opacity 0.6s);
+        position : fixed;
+        left : calc(50% - 50px);
+        bottom : 50px;
+        width : 100px;
+        height : 5px;
+        border : 1px solid var(--mainColor);
+        .scroll-fill {
+            @include transition(width 0.6s);
+            display : block;
+            width : 5%;
+            height : 3px;
+            background : var(--mainColor);
+        }
+    }
     .hor {
         position : relative;
-        width : 300vw;
-        height : 100vh;
+        width : 150%;
+        height : 100%;
         > div {
             position : absolute;
             ul {
@@ -307,7 +415,10 @@ h3 {
         }
         .cnt-project {
             left : 497px;
-            top : 331px;
+            top : 310px;
+            .margin30 {
+                margin-bottom : 30px;
+            }
         }
         .cnt-skills {
             left : 1064px;
@@ -323,8 +434,9 @@ h3 {
         }
         .cnt-skills, .cnt-about {
             ul {
+                @include transition(color 0.5s, background 0.5s);
                 font-size : 30px;
-                color : $mainBlue;
+                color : var(--mainColor);
             }
         }
     }
@@ -339,29 +451,32 @@ h3 {
     .project-txt-area {
         display : table;
         .project-common {
+            @include transition(all 0.6s);
             position : relative;
             display : table-cell;
             vertical-align : middle;
             padding-left : 12vw;
             padding-bottom : 120px;
             ~.project-common {
-                display : none;  
+                display : none;
             }
         }
+        
         p {
             margin-bottom : 100px;
             color : $black;
         }
         a {
+            @include transition(color 0.5s, background 0.5s);
             @include borderRadius(5px);
             @include boxSizing;
             display : inline-block;
             width : 100px;
             height : 50px;
             line-height : 50px;
-            margin-left : 10em;
+            margin-left : 8em;
             text-align : center;
-            border : 1px solid $mainBlue;
+            border : 1px solid var(--mainColor);
         }
     }
     .project-modal-area {
@@ -379,14 +494,16 @@ h3 {
         .modal-btn {
             @include transition(all 0.2s);
             @include boxSizing;
+            position : relative;
             float : left;
             width : 25vw;
             height : 40vh;
             background : #fff;
-            border-bottom : 1px solid #eee;
+            border : 15px solid rgba(var(--mainColor),0.5);
             &:hover, &:focus {
                 @include transform(scale(1.05));
                 @include boxShadow(0px 0px 8px $gray);
+                z-index : 600;
             }
             p {
                 padding : 20px 0px 30px;
@@ -404,8 +521,8 @@ h3 {
     display : none;
     h2 {
         position : fixed;
-        left : 0px;
-        top : 0px;
+        left : 5%;
+        top : 3%;
         margin-bottom : 0px;
     }
     > div {
@@ -441,13 +558,14 @@ h3 {
             position : absolute;
             bottom : 10rem;
             button {
+                @include transition(color 0.5s, background 0.5s);
                 @include borderRadius(10px);
                 width : 40px;
                 height : 40px;
                 margin-left : 63px;
                 &.active {
                     color : #fff;
-                    background : $mainBlue;
+                    background : var(--mainColor);
                 }
             }
             button:first-child {
@@ -496,7 +614,25 @@ h3 {
     }
 }
 
-
+@include keyframes(scrolldown) {
+    0%{
+        margin-top : 0px;
+    }
+    50% {
+        margin-top : 5px;
+    }
+    100% {
+        margin-top : -1px;
+    }
+}
+@include keyframes(lineAni) {
+    0% {
+        stroke-dashoffset : 28.284271240234375;
+    }
+    100% {
+        stroke-dashoffset : 0;
+    }
+}
 
 @media all and (max-width : 1260) {
 

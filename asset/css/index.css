@@ -43,7 +43,7 @@ img {
   border: none;
   max-width: 100%; }
 
-header, nav, section, footer {
+header, nav, section, article, footer {
   display: block; }
 
 strong {
@@ -186,7 +186,8 @@ h3 {
   position: absolute;
   width: 3px;
   background: var(--mainColor);
-  height: 360px; }
+  height: 360px;
+  z-index: 500; }
 #fixed-line .deco-line1 {
   left: 50%;
   top: 210px;
@@ -435,6 +436,10 @@ h3 {
   #project .project-txt-area {
     display: table; }
     #project .project-txt-area .project-common {
+      -webkit-transition: all 0.6s;
+      -moz-transition: all 0.6s;
+      -o-transition: all 0.6s;
+      transition: all 0.6s;
       position: relative;
       display: table-cell;
       vertical-align: middle;
@@ -460,7 +465,7 @@ h3 {
       width: 100px;
       height: 50px;
       line-height: 50px;
-      margin-left: 10em;
+      margin-left: 8em;
       text-align: center;
       border: 1px solid var(--mainColor); }
   #project .project-modal-area {
@@ -484,11 +489,12 @@ h3 {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
+      position: relative;
       float: left;
       width: 25vw;
       height: 40vh;
       background: #fff;
-      border-bottom: 1px solid #eee; }
+      border: 15px solid rgba(var(--mainColor), 0.5); }
       #project .project-modal-area .modal-btn:hover, #project .project-modal-area .modal-btn:focus {
         -webkit-transform: scale(1.05);
         -moz-transform: scale(1.05);
@@ -497,7 +503,8 @@ h3 {
         transform: scale(1.05);
         -webkit-box-shadow: 0px 0px 8px #aaaaaa;
         -moz-box-shadow: 0px 0px 8px #aaaaaa;
-        box-shadow: 0px 0px 8px #aaaaaa; }
+        box-shadow: 0px 0px 8px #aaaaaa;
+        z-index: 600; }
       #project .project-modal-area .modal-btn p {
         padding: 20px 0px 30px;
         font-size: 22px;
@@ -510,8 +517,8 @@ h3 {
   display: none; }
   #webAcce h2 {
     position: fixed;
-    left: 0px;
-    top: 0px;
+    left: 5%;
+    top: 3%;
     margin-bottom: 0px; }
   #webAcce > div {
     float: left;
@@ -559,6 +566,25 @@ h3 {
 #aboutMe {
   display: none;
   position: relative; }
+  #aboutMe .forward {
+    -webkit-animation: forwardAni 1.2s 0.4s linear 1 both;
+    -moz-animation: forwardAni 1.2s 0.4s linear 1 both;
+    -o-animation: forwardAni 1.2s 0.4s linear 1 both;
+    animation: forwardAni 1.2s 0.4s linear 1 both;
+    fill: none;
+    stroke: var(--mainColor);
+    stroke-width: 1px;
+    stroke-dasharray: 28.284271240234375;
+    stroke-dashoffset: 28.284271240234375; }
+  #aboutMe .forward2 {
+    -webkit-animation: reverseAni 1.2s 0.4s linear 1 both;
+    -moz-animation: reverseAni 1.2s 0.4s linear 1 both;
+    -o-animation: reverseAni 1.2s 0.4s linear 1 both;
+    animation: reverseAni 1.2s 0.4s linear 1 both;
+    stroke: var(--mainColor);
+    stroke-width: 1px;
+    stroke-dasharray: 28.284271240234375;
+    stroke-dashoffset: 28.284271240234375; }
   #aboutMe div {
     position: absolute;
     left: calc(50% - 400px);
@@ -618,5 +644,9 @@ h3 {
     stroke-dashoffset: 28.284271240234375; }
   100% {
     stroke-dashoffset: 0; } }
+@-webkit-keyframes forwardAni {}
+@-moz-keyframes forwardAni {}
+@-webkit-keyframes reverseAni {}
+@-moz-keyframes reverseAni {}
 
 /*# sourceMappingURL=index.css.map */

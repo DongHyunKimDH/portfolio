@@ -57,7 +57,7 @@ img {
     border : none;
     max-width : 100%;
 }
-header, nav, section, footer {
+header, nav, section, article, footer {
     display : block;
 }
 strong {
@@ -206,6 +206,7 @@ h3 {
         width : 3px;
         background : var(--mainColor);
         height : 360px;
+        z-index : 500;
     }
     .deco-line1 {
         left : 50%;
@@ -450,15 +451,17 @@ h3 {
     .project-txt-area {
         display : table;
         .project-common {
+            @include transition(all 0.6s);
             position : relative;
             display : table-cell;
             vertical-align : middle;
             padding-left : 12vw;
             padding-bottom : 120px;
             ~.project-common {
-                display : none;  
+                display : none;
             }
         }
+        
         p {
             margin-bottom : 100px;
             color : $black;
@@ -471,7 +474,7 @@ h3 {
             width : 100px;
             height : 50px;
             line-height : 50px;
-            margin-left : 10em;
+            margin-left : 8em;
             text-align : center;
             border : 1px solid var(--mainColor);
         }
@@ -491,14 +494,16 @@ h3 {
         .modal-btn {
             @include transition(all 0.2s);
             @include boxSizing;
+            position : relative;
             float : left;
             width : 25vw;
             height : 40vh;
             background : #fff;
-            border-bottom : 1px solid #eee;
+            border : 15px solid rgba(var(--mainColor),0.5);
             &:hover, &:focus {
                 @include transform(scale(1.05));
                 @include boxShadow(0px 0px 8px $gray);
+                z-index : 600;
             }
             p {
                 padding : 20px 0px 30px;
@@ -516,8 +521,8 @@ h3 {
     display : none;
     h2 {
         position : fixed;
-        left : 0px;
-        top : 0px;
+        left : 5%;
+        top : 3%;
         margin-bottom : 0px;
     }
     > div {
@@ -576,6 +581,21 @@ h3 {
 #aboutMe {
     display : none;
     position : relative;
+    .forward {
+        @include animation(forwardAni 1.2s 0.4s linear 1 both);
+        fill : none;
+        stroke : var(--mainColor);
+        stroke-width : 1px;
+        stroke-dasharray : 28.284271240234375;
+        stroke-dashoffset : 28.284271240234375;
+    }
+    .forward2 {
+        @include animation(reverseAni 1.2s 0.4s linear 1 both);
+        stroke : var(--mainColor);
+        stroke-width : 1px;
+        stroke-dasharray : 28.284271240234375;
+        stroke-dashoffset : 28.284271240234375;
+    }
     div {
         position : absolute;
         left : calc(50% - 400px);
@@ -609,6 +629,7 @@ h3 {
     }
 }
 
+
 @include keyframes(scrolldown) {
     0%{
         margin-top : 0px;
@@ -627,6 +648,12 @@ h3 {
     100% {
         stroke-dashoffset : 0;
     }
+}
+@include keyframes(forwardAni) {
+
+}
+@include keyframes(reverseAni) {
+
 }
 
 @media all and (max-width : 1260) {
