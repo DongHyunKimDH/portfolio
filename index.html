@@ -18,7 +18,15 @@
     <script src="asset/js/swiper.min.js"></script>
     <script src="asset/js/jquery.easing.min.js"></script>
     <script src="asset/js/index.js"></script>
-
+    <script>
+        //getTotalLength()로 길이 확인
+        window.onload = function() 
+        {    
+            var size = document.querySelector(".forward2").getTotalLength();
+            console.log(size);
+        }
+        </script>
+    
 </head>
 
 <body>
@@ -281,12 +289,10 @@
             </article>
     
             <article id="aboutMe">
-                <path class="forward" d="M53.9% 10% L15 30 L25 20">
-
-                </path>
-                <path class="forward2" d="M53.9% 10%+720px L15 30 L25 20">
-
-                </path>
+                <svg>
+                    <path class="forward po-relat" d="M1036,94 L468.3,225.2 L468.3,704.5 L1036.5,813.8 "/>
+                    <path class="forward2 po-relat" d="M1036,813.8 1602.5,705 1602.5,225 1036,94.3 "/>
+                </svg>
                 <div>
                     <ul>
                         <li>

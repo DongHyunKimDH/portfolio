@@ -566,25 +566,30 @@ h3 {
 #aboutMe {
   display: none;
   position: relative; }
-  #aboutMe .forward {
-    -webkit-animation: forwardAni 1.2s 0.4s linear 1 both;
-    -moz-animation: forwardAni 1.2s 0.4s linear 1 both;
-    -o-animation: forwardAni 1.2s 0.4s linear 1 both;
-    animation: forwardAni 1.2s 0.4s linear 1 both;
-    fill: none;
-    stroke: var(--mainColor);
-    stroke-width: 1px;
-    stroke-dasharray: 28.284271240234375;
-    stroke-dashoffset: 28.284271240234375; }
-  #aboutMe .forward2 {
-    -webkit-animation: reverseAni 1.2s 0.4s linear 1 both;
-    -moz-animation: reverseAni 1.2s 0.4s linear 1 both;
-    -o-animation: reverseAni 1.2s 0.4s linear 1 both;
-    animation: reverseAni 1.2s 0.4s linear 1 both;
-    stroke: var(--mainColor);
-    stroke-width: 1px;
-    stroke-dasharray: 28.284271240234375;
-    stroke-dashoffset: 28.284271240234375; }
+  #aboutMe svg {
+    display: block;
+    width: 100%;
+    height: 100%; }
+    #aboutMe svg .forward {
+      -webkit-animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      -moz-animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      -o-animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      fill: none;
+      stroke: var(--mainColor);
+      stroke-width: 1px;
+      stroke-dasharray: 1640.58056640625;
+      stroke-dashoffset: 1640.58056640625; }
+    #aboutMe svg .forward2 {
+      -webkit-animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      -moz-animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      -o-animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      fill: none;
+      stroke: var(--mainColor);
+      stroke-width: 1px;
+      stroke-dasharray: 1638.235107421875;
+      stroke-dashoffset: 1638.235107421875; }
   #aboutMe div {
     position: absolute;
     left: calc(50% - 400px);
@@ -644,9 +649,59 @@ h3 {
     stroke-dashoffset: 28.284271240234375; }
   100% {
     stroke-dashoffset: 0; } }
-@-webkit-keyframes forwardAni {}
-@-moz-keyframes forwardAni {}
-@-webkit-keyframes reverseAni {}
-@-moz-keyframes reverseAni {}
+@-webkit-keyframes forwardAni {
+  0% {
+    stroke-dashoffset: 1640.58056640625; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor);
+    opacity: 0.7; } }
+@-moz-keyframes forwardAni {
+  0% {
+    stroke-dashoffset: 1640.58056640625; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor);
+    opacity: 0.7; } }
+@keyframes forwardAni {
+  0% {
+    stroke-dashoffset: 1640.58056640625; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor);
+    opacity: 0.7; } }
+@-webkit-keyframes reverseAni {
+  0% {
+    stroke-dashoffset: 1638.235107421875; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor);
+    opacity: 0.7; } }
+@-moz-keyframes reverseAni {
+  0% {
+    stroke-dashoffset: 1638.235107421875; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor);
+    opacity: 0.7; } }
+@keyframes reverseAni {
+  0% {
+    stroke-dashoffset: 1638.235107421875; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor);
+    opacity: 0.7; } }
 
 /*# sourceMappingURL=index.css.map */

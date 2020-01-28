@@ -28,16 +28,19 @@ $(document).ready(function () {
     var $mainRed = "#cb6586";
     // Intro
     function introAni() {
-        // line1, 2 최초 위치 저장
-        var lineOffset = [];
-        lineOffset[0] = [$("#fixed-line").children().eq(0).offset().left,$("#fixed-line").children().eq(0).offset().top];
-        lineOffset[1] = [$("#fixed-line").children().eq(1).offset().left,$("#fixed-line").children().eq(1).offset().top];
+        $("#intro *").removeAttr("style");
+        $(".deco-line1, .deco-line2").css({
+            left : "50%",
+            top : "210px",
+            height : "650px"
+        });
+        
 
         //  배경색 채우기
-        $FillDiv.eq(0).stop().animate({width: "50vw"}, 200);
-        $FillDiv.eq(1).stop().delay(180).animate({width: "50vw"}, 200);
-        $FillDiv.eq(3).stop().delay(350).animate({height: "50vh"}, 200);
-        $FillDiv.eq(2).stop().delay(650).animate({width: "50vw"}, 200, function () {
+        $FillDiv.eq(0).stop().animate({width: "50%"}, 200);
+        $FillDiv.eq(1).stop().delay(180).animate({width: "50%"}, 200);
+        $FillDiv.eq(3).stop().delay(350).animate({height: "50%"}, 200);
+        $FillDiv.eq(2).stop().delay(650).animate({width: "50%"}, 200, function () {
             //  글자 fade, 배경fade, 글자색
             for (var i = 0; i < $IntroTxt.size(); i++) {
                 introArray[i] = Math.floor(Math.random() * 20) + 1;
@@ -63,14 +66,14 @@ $(document).ready(function () {
     
         // line 애니메이트
         $line.eq(0).stop().delay(4000).animate({
-            left : "523px",
+            left : "27.28%",
             height : "500px"
         });
         $line.eq(1).stop().delay(4000).animate({
-            left : "1391px",
+            left : "73%",
             height : "500px"
-        });    
-        console.log(lineOffset[0],lineOffset[1]);
+        });
+        $(".deco-line3, .deco-line4").css("opacity", 0);
     }
     introAni();
     
@@ -106,10 +109,104 @@ $(document).ready(function () {
     // indicator
     $indicator.on("click",function() {
         var target = $($(this).attr("href"));
+        var aIdx = $(this).index();
+        $(this).addClass("active").siblings().removeClass("active");
+        switch (aIdx) {
+            case 0 : {
+                introAni();
+                break;
+            }
+            case 1 : {
+                $line.eq(0).stop().animate({
+                    left : "24%",
+                    top : "300px",
+                    height : "520px"
+                });
+                $line.eq(1).stop().animate({
+                    left : "53.5%",
+                    top : "191px",
+                    height : "620px"
+                });
+                $line.eq(2).stop().animate({
+                    left : "85%",
+                    top : "270px",
+                    height : "510px",
+                    opacity : 1
+                });
+                $line.eq(3).stop().animate({
+                    left : "117%",
+                    top : "240px",
+                    height : "570px",
+                    opacity : 1
+                });
+                break;
+            }
+            case 2 : {
+                $line.eq(0).stop().animate({
+                    marginLeft : "0px",
+                    left : "50%",
+                    top : "0px",
+                    height : "100%"
+                })
+                $line.eq(1).stop().animate({
+                    marginLeft : "0px",
+                    left : "75%",
+                    top : "10%",
+                    height : "90%"
+                })
+                $line.eq(2).stop().animate({
+                    marginLeft : "0px",
+                    left : "99.9%",
+                    top : "0px",
+                    height : "100%"
+                })
+                $line.eq(3).css({
+                    marginLeft : "0px",
+                    opacity : 0
+                });
+                break;
+            }
+            case 3 : {
+                $line.eq(0).stop().animate({
+                    left : "0%",
+                    top : "0%",
+                    height : "100%"
+                });
+                $line.eq(1).stop().animate({
+                    left : "50%",
+                    top : "0%",
+                    height : "100%"
+                });
+                $line.eq(2).stop().animate({
+                    left : "100%",
+                    top : "0%",
+                    height : "100%",
+                    opacity : 1
+                });
+                break;
+            }
+            case 4 : {
+                $line.eq(0).stop().animate({
+                    left : "24.3%",
+                    top : "24%",
+                    height : "480px"
+                });
+                $line.eq(1).stop().animate({
+                    left : "53.9%",
+                    top : "10%",
+                    height : "720px"
+                });
+                $line.eq(2).stop().animate({
+                    left : "83.4%",
+                    top : "24%",
+                    height : "480px"
+                });
+                $line.eq(3).css("opacity", "0");
+                break;
+            }
+        }
         $("#cnt-wrap article").stop().fadeOut();
         target.stop().fadeIn();
-        $(this).addClass("active").siblings().removeClass("active");
-            if($(this).index() == 0) introAni();
     });
 
     // intro wheel event
@@ -170,7 +267,7 @@ $(document).ready(function () {
                                 })
                                 $line.eq(1).stop().animate({
                                     marginLeft : "0px",
-                                    left : "75%",
+                                    left : "73%",
                                     top : "210px",
                                     height : "500px"
                                 })
@@ -367,7 +464,6 @@ $(document).ready(function () {
                 }, function() {
                     $aboutMe.stop().delay(800).fadeIn();
                 });
-                $line.eq(3).stop().fadeOut();
                 $indicator.eq(4).addClass("active").siblings().removeClass("active");
             }
         });
@@ -378,6 +474,7 @@ $(document).ready(function () {
         clearTimeout(aboutMeTimer);
         aboutMeTimer = setTimeout(function() {
             if($aboutMe.is(":animated")) return false;
+            $("#aboutMe svg .forward, #aboutMe svg .forward2").css("fill", "none");
             var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
             if(delta > 0) {
                 $aboutMe.stop().fadeOut();
@@ -402,5 +499,8 @@ $(document).ready(function () {
                 $indicator.eq(3).addClass("active").siblings().removeClass("active");
             }
         });
+        setTimeout(function() {
+            $aboutMe.find(">div >ul").css("color", "#ffffff");
+        },2200);
     })
 });
