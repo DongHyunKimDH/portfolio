@@ -15,18 +15,10 @@
             <script src="asset/js/respond.min.js"></script>
          <![endif]-->
     <script src="asset/js/jquery-1.12.4.min.js"></script>
+    <script src="asset/js/jquery-ui.js"></script>
     <script src="asset/js/swiper.min.js"></script>
     <script src="asset/js/jquery.easing.min.js"></script>
-    <script src="asset/js/index.js"></script>
-    <script>
-        //getTotalLength()로 길이 확인
-        window.onload = function() 
-        {    
-            var size = document.querySelector(".forward2").getTotalLength();
-            console.log(size);
-        }
-        </script>
-    
+    <script src="asset/js/index.js"></script>    
 </head>
 
 <body>
@@ -249,40 +241,82 @@
             <article id="webAcce">
                 <h2>Web Accessibillity</h2>
                 <div class="web-txt-area">
-                    <div class="web-txt-common">
-                        <h3>인식의 용이성</h3>
-                        <strong>1-1 텍스트 아닌 콘텐츠에는 대체 텍스트를 제공해야 한다.</strong>
-                        <p>이미지 등 텍스트가 아닌 콘텐츠를 이용할 경우, 그 의미나 용도를<br>해당 이미지와 동등하게 인식할 수 있도록 적절한<br>대체 텍스트를 간단명료하게 제공해야 한다.
-                        </p>
-                        <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
-                            공백문자로 제공하는 것이 바람직하다.</p>
+                    <div id="tabpanel1" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab1">
+                        <div class="swiper-slide">
+                            <h3>인식의 용이성</h3>
+                            <strong>1-1 텍스트 아닌 콘텐츠에는 대체 텍스트를 제공해야 한다.</strong>
+                            <p>이미지 등 텍스트가 아닌 콘텐츠를 이용할 경우, 그 의미나 용도를<br>해당 이미지와 동등하게 인식할 수 있도록 적절한<br>대체 텍스트를 간단명료하게 제공해야 한다.
+                            </p>
+                            <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
+                                공백문자로 제공하는 것이 바람직하다.</p>
+                        </div>
                     </div>
-                    <div id="acceBtn">
-                        <button type="button">1</button>
-                        <button type="button">2</button>
-                        <button type="button">3</button>
-                        <button type="button">4</button>
+                    <div id="tabpanel2" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab2">
+                        <div class="swiper-slide">
+                            <h3>운용의 용이성</h3>
+                            <strong>2-2 콘텐츠를 읽고 사용하는 데 충분한 시간을 제공해야 한다.</strong>
+                            <p>시간제한이 있는 콘텐츠는 시간적인 제약이 있음을 사용자에게 반드시 알려주어야 한다.
+                            </p>
+                            <p>저시력자나 지적장애인 등은 이동하거나 스크롤 되는 콘텐츠를 인지하기가 어렵다.<br>
+                                때문에 웹 콘텐츠는 사용자가 이동이나 스크롤을 일시 정지시키거나<br>
+                                지나간 콘텐츠 또는 앞으로 나타날 콘텐츠를 사용할 수 있도록 제공한다.</p>
+                        </div>
                     </div>
+                    <div id="tabpanel3" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab3">
+                        <div class="swiper-slide">
+                            <h3>이해의 용이성</h3>
+                            <strong>3-3 콘텐츠는 논리적으로 구성해야 한다.</strong>
+                            <p>복잡한 데이터를 표로 제공할 경우, 시각장애인 등도 이해할 수 있도록<br>
+                                표의 이해를 돕기 위한 내용 및 구조에 대한 정보를 제공해야 한다.
+                            </p>
+                            <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
+                                공백문자로 제공하는 것이 바람직하다.</p>
+                        </div>
+                    </div>
+                    <div id="tabpanel4" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab4">
+                        <div class="swiper-slide">
+                            <h3>견고성</h3>
+                            <strong>4-1 텍스트 아닌 콘텐츠에는 대체 텍스트를 제공해야 한다.</strong>
+                            <p>이미지 등 텍스트가 아닌 콘텐츠를 이용할 경우, 그 의미나 용도를<br>해당 이미지와 동등하게 인식할 수 있도록 적절한<br>대체 텍스트를 간단명료하게 제공해야 한다.
+                            </p>
+                            <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
+                                공백문자로 제공하는 것이 바람직하다.</p>
+                        </div>
+                    </div>
+                    <ul id="acceBtn" role="tablist" aria-label="웹접근성 분석 보고서">
+                        <li id="tab1" class="tab first" role="tab" aria-controls="tabpanel1">1</li>
+                        <li id="tab2" class="tab" role="tab" aria-controls="tabpanel2">2</li>
+                        <li id="tab3" class="tab" role="tab" aria-controls="tabpanel3">3</li>
+                        <li id="tab4" class="tab last" role="tab" aria-controls="tabpanel4">4</li>
+                    </ul>
                 </div>
     
                 <div class="web-slide-area">
-                    <ul role="tablist" aria-label="웹접근성 분석 보고서">
-                        <li id="tab1" class="tab" role="tab" aria-controls="tabpanel1"></li>
-                        <li id="tab2" class="tab" role="tab" aria-controls="tabpanel2"></li>
-                        <li id="tab3" class="tab" role="tab" aria-controls="tabpanel3"></li>
-                        <li id="tab4" class="tab" role="tab" aria-controls="tabpanel4"></li>
-                    </ul>
                     <div class="swiper-container">
-                        <!-- 슬라이더 상세내용 그룹 -->
                         <div class="swiper-wrapper">
                             <!-- 상세내용 -->
                             <div class="swiper-slide">
-                                d
+                                <ul>
+                                    <li class="slide-bg"></li>
+                                    <li class="slide-txt">3</li>
+                                </ul>
                             </div>
+                            <div class="swiper-slide">
+                                <ul>
+                                    <li class="slide-bg"></li>
+                                    <li class="slide-txt">4</li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <ul>
+                                    <li class="slide-bg"></li>
+                                    <li class="slide-txt">5</li>
+                                </ul>
+                            </div>
+                            <!-- 이전 다음 버튼 -->
+                            <div class="swiper-button-prev" tabindex="0"></div>
+                            <div class="swiper-button-next" tabindex="0"></div>
                         </div>
-                        <!-- 이전 다음 버튼 -->
-                        <div class="swiper-button-prev"><img src="assets/images/main/s_arr_prev.png" alt=""></div>
-                        <div class="swiper-button-next"><img src="assets/images/main/s_arr_next.png" alt=""></div>
                     </div>
     
                 </div>
@@ -309,7 +343,7 @@
                         </li>
                         <li>
                             <strong>E-Mail</strong>
-                            <span>k101040343547@gmail.com</span>
+                            <span>k01040343547@gmail.com</span>
                         </li>
                     </ul>
                 </div>
