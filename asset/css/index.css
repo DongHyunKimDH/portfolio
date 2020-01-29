@@ -711,8 +711,7 @@ h3 {
     stroke-dashoffset: 0;
     fill: transparent; }
   100% {
-    fill: var(--mainColor);
-    opacity: 0.9; } }
+    fill: var(--mainColor); } }
 @-moz-keyframes forwardAni {
   0% {
     stroke-dashoffset: 1640.58056640625; }
@@ -720,8 +719,7 @@ h3 {
     stroke-dashoffset: 0;
     fill: transparent; }
   100% {
-    fill: var(--mainColor);
-    opacity: 0.9; } }
+    fill: var(--mainColor); } }
 @keyframes forwardAni {
   0% {
     stroke-dashoffset: 1640.58056640625; }
@@ -729,8 +727,7 @@ h3 {
     stroke-dashoffset: 0;
     fill: transparent; }
   100% {
-    fill: var(--mainColor);
-    opacity: 0.9; } }
+    fill: var(--mainColor); } }
 @-webkit-keyframes reverseAni {
   0% {
     stroke-dashoffset: 1638.235107421875; }
@@ -738,8 +735,7 @@ h3 {
     stroke-dashoffset: 0;
     fill: transparent; }
   100% {
-    fill: var(--mainColor);
-    opacity: 0.9; } }
+    fill: var(--mainColor); } }
 @-moz-keyframes reverseAni {
   0% {
     stroke-dashoffset: 1638.235107421875; }
@@ -747,8 +743,7 @@ h3 {
     stroke-dashoffset: 0;
     fill: transparent; }
   100% {
-    fill: var(--mainColor);
-    opacity: 0.9; } }
+    fill: var(--mainColor); } }
 @keyframes reverseAni {
   0% {
     stroke-dashoffset: 1638.235107421875; }
@@ -756,7 +751,6 @@ h3 {
     stroke-dashoffset: 0;
     fill: transparent; }
   100% {
-    fill: var(--mainColor);
-    opacity: 0.9; } }
+    fill: var(--mainColor); } }
 
 /*# sourceMappingURL=index.css.map */

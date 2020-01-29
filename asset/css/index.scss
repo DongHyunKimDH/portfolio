@@ -707,7 +707,7 @@ h3 {
     }
     100% {
         fill : var(--mainColor);
-        opacity : 0.9;
+        // opacity : 0.9;
     }
 }
 @include keyframes(reverseAni) {
@@ -720,7 +720,7 @@ h3 {
     }
     100% {
         fill : var(--mainColor);
-        opacity : 0.9;
+        // opacity : 0.9;
     }
 }
 

@@ -478,7 +478,7 @@ $(document).ready(function () {
                     height : "480px"
                 }, function() {
                     $aboutMe.stop().delay(800).fadeIn();
-                    $line.stop().delay(2200).fadeOut();
+                    $aboutMe.css("zIndex","501");
                     $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"});
                 });
                 $indicator.eq(4).addClass("active").siblings().removeClass("active");
@@ -525,7 +525,6 @@ $(document).ready(function () {
         clearTimeout(aboutMeTimer);
         aboutMeTimer = setTimeout(function() {
             if($aboutMe.is(":animated")) return false;
-            $("#aboutMe svg .forward, #aboutMe svg .forward2").css("fill", "none");
             var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
             if(delta > 0) {
                 $aboutMe.stop().fadeOut();
