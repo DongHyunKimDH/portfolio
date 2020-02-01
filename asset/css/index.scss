@@ -95,6 +95,7 @@ body {
     font-weight : 400;
     font-size : 18px;
     color : var(--mainColor);
+    word-break : keep-all
 }
 #skip a {
     @include transition(background 0.5s);
@@ -537,7 +538,7 @@ h3 {
         align-items : center;
         .web-txt-common {
             margin-bottom : 8em;
-            width : auto;
+            width : 700px;
             height : auto;
             h3, strong, p {
                 color : $black;
@@ -556,6 +557,26 @@ h3 {
                 margin-top : 40px;
             }
         }
+        .tabpanel {
+            display : none;
+            &.active {
+                display : block;
+            }
+        }
+        .slide-container {
+            position : relative;
+            overflow : hidden;
+            > div {
+                display : none;
+                position : absolute;
+                left : 100%;
+                top : 0px;            
+            }
+            & div:nth-of-type(1) {
+                display : block;
+                left : 0px;
+            }
+        }
         #acceBtn {
             position : absolute;
             bottom : 10rem;
@@ -568,6 +589,7 @@ h3 {
                 line-height : 40px;
                 float : left;
                 margin-left : 63px;
+                cursor : pointer;
                 &.active {
                     color : #fff;
                     background : var(--mainColor);

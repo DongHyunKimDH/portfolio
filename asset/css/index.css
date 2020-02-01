@@ -81,7 +81,8 @@ body {
   font-family: "NotoSans";
   font-weight: 400;
   font-size: 18px;
-  color: var(--mainColor); }
+  color: var(--mainColor);
+  word-break: keep-all; }
 
 #skip a {
   -webkit-transition: background 0.5s;
@@ -531,7 +532,7 @@ h3 {
     align-items: center; }
     #webAcce .web-txt-area .web-txt-common {
       margin-bottom: 8em;
-      width: auto;
+      width: 700px;
       height: auto; }
       #webAcce .web-txt-area .web-txt-common h3, #webAcce .web-txt-area .web-txt-common strong, #webAcce .web-txt-area .web-txt-common p {
         color: #333333; }
@@ -545,6 +546,21 @@ h3 {
         margin-bottom: 60px; }
       #webAcce .web-txt-area .web-txt-common p + p {
         margin-top: 40px; }
+    #webAcce .web-txt-area .tabpanel {
+      display: none; }
+      #webAcce .web-txt-area .tabpanel.active {
+        display: block; }
+    #webAcce .web-txt-area .slide-container {
+      position: relative;
+      overflow: hidden; }
+      #webAcce .web-txt-area .slide-container > div {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: 0px; }
+      #webAcce .web-txt-area .slide-container div:nth-of-type(1) {
+        display: block;
+        left: 0px; }
     #webAcce .web-txt-area #acceBtn {
       position: absolute;
       bottom: 10rem;
@@ -561,7 +577,8 @@ h3 {
         height: 40px;
         line-height: 40px;
         float: left;
-        margin-left: 63px; }
+        margin-left: 63px;
+        cursor: pointer; }
         #webAcce .web-txt-area #acceBtn li.active {
           color: #fff;
           background: var(--mainColor); }

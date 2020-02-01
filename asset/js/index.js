@@ -14,6 +14,9 @@ $(document).ready(function () {
     var articleLength = $("#cnt-wrap article").length;
     var winWidth;
     var ContentsWidth;
+    var $tabBtn = $(".tab");
+
+
     
     var resizeTimer = 0;
     var introTimer = 0;
@@ -26,6 +29,7 @@ $(document).ready(function () {
     var $mainBlack = "#333435";
     var $mainBlue = "#7ec6c5";
     var $mainRed = "#cb6586";
+
     // Intro
     function introAni() {
         $("#intro *").removeAttr("style");
@@ -34,8 +38,6 @@ $(document).ready(function () {
             top : "210px",
             height : "650px"
         });
-        
-
         //  배경색 채우기
         $FillDiv.eq(0).stop().animate({width: "50%"}, 200);
         $FillDiv.eq(1).stop().delay(180).animate({width: "50%"}, 200);
@@ -105,6 +107,7 @@ $(document).ready(function () {
                 break;
             }
         }
+        $(".color-btn-active").removeClass("active");
     })
     // indicator
     $indicator.on("click",function() {
@@ -183,7 +186,10 @@ $(document).ready(function () {
                     height : "100%",
                     opacity : 1
                 },function() {
-                    $(window).trigger("resize");
+                    $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
+                    $('.tab:first-of-type').attr('aria-selected', true);
+                    $('.tabpanel:first-of-type').attr('aria-hidden', false);
+                    multiSlider("#tabpanel1");
                 });
                 break;
             }
@@ -356,24 +362,28 @@ $(document).ready(function () {
                 $line.eq(0).stop().animate({
                     left : "24%",
                     top : "300px",
-                    height : "520px"
+                    height : "520px",
+                    marginLeft : "-960px"
                 });
                 $line.eq(1).stop().animate({
                     left : "53.5%",
                     top : "191px",
-                    height : "620px"
+                    height : "620px",
+                    marginLeft : "-960px"
                 });
                 $line.eq(2).stop().animate({
                     left : "85%",
                     top : "270px",
                     height : "510px",
-                    opacity : 1
+                    opacity : 1,
+                    marginLeft : "-960px"
                 });
                 $line.eq(3).stop().animate({
                     left : "117%",
                     top : "240px",
                     height : "570px",
-                    opacity : 1
+                    opacity : 1,
+                    marginLeft : "-960px"
                 }, function() {
                     $contents.stop().delay(800).fadeIn();
                     $indicator.eq(1).addClass("active").siblings().removeClass("active");
@@ -402,7 +412,10 @@ $(document).ready(function () {
                     $(window).trigger("resize");
                 });
                 $indicator.eq(3).addClass("active").siblings().removeClass("active");
-
+                $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
+                $('.tab:first-of-type').attr('aria-selected', true);
+                $('.tabpanel:first-of-type').attr('aria-hidden', false);
+                multiSlider("#tabpanel1");   
             }
         });
     })
@@ -487,9 +500,136 @@ $(document).ready(function () {
     })
 
     // webAcce btn click event
+    $tabBtn.on("click", function() {
+        var $target = $(this);
+        var btnIdx = $(this).index();
+        tabActive($target);
+        switch(btnIdx) {
+            case 0 : {
+                multiSlider("#tabpanel1");
+                break;
+            }
+            case 1 : {
+                multiSlider("#tabpanel2");
+                break;
+            }
+            case 2 : {
+                multiSlider("#tabpanel3");
+                break;
+            }
+            case 3 : {
+                multiSlider("#tabpanel4");
+                break;
+            }
+        }
+    });
+
+    // webAcce tabBtn 키보드제어
+    $tabBtn.on("keydown", function(e) 
+    { // 방향키 37 39 , esc space 27 32 , home end 36 35 enter 13
+        var key = e.keyCode;
+        switch(key)
+        {
+            case 13 : //enter
+            case 32 : { // space bar
+                var $target = $(this);
+                tabActive($target);
+            }
+            case 27 : {
+
+                break;
+            }
+
+            case 35 : { // end
+                e.preventDefault();
+                $(this).siblings(".last").attr("tabIndex",0).focus();
+                break;
+            }
+            case 36 : { // home
+                e.preventDefault();
+                $(this).attr("tabIndex",-1).siblings(".first").attr("tabIndex",0).focus();
+                break;
+            }
+            case 37 : { // 이전방향키
+                $(this).attr("tabIndex", -1).prev().focus();
+                if($(this).hasClass("first")) 
+                    $(this).siblings(".last").attr("tabIndex", 0).focus();
+                else
+                    $(this).prev().attr("tabIndex",0).focus();
+                break;
+            }
+            case 39 : { // 다음방향키
+                $(this).attr("tabIndex",-1).next().focus();
+                if($(this).hasClass("last"))
+                    $(this).siblings(".first").attr("tabIndex",0).focus();
+                else 
+                    $(this).next().attr("tabIndex",0).focus();
+                break;
+            }
+
+        }
+    });
+
+    // webAcce btn Active
+    function tabActive($target) {
+        $target.addClass("active").attr({"tabIndex" : 0, "aria-selected" : "true"}).siblings().removeClass("active").attr({"tabIndex" : -1, "aria-selected" : "false"});
+        $("#"+$target.attr("aria-controls")).addClass("active").attr({"tabIndex" : 0, "aria-hidden" : "false"}).siblings(".tabpanel").removeClass("active").attr({"tabIndex" : -1, "aria-hidden" : "true"});
+    }
+    // webAcce slide btn click event
+    function multiSlider(target) {
+        var $slider = $(target);
+        var $sliderItem = $slider.find(".slide-container > div");
+        var current = 0;
+        var nextNum; 
+        var slideLength = $sliderItem.length; 
+        // prev, next click event
+        $webAcce.find(".prev-next-btn div").on("click", function() {
+            var btnIdx = $(this).index();
+            nextNum = btnIdx == 0 ? current-1 : current+1;
+            if(nextNum == -1) {
+                nextNum = slideLength -1;
+            } 
+            else if(nextNum == slideLength) {
+                nextNum = 0;
+            } 
+            console.log($slider, $sliderItem, slideLength, current);
+            sliderActive();
+        });
     
+        // autoplay 
+/*         function autoPlay() {
+            // setInterval() 호출
+            // aria-live 변경
+            timer = setInterval(function() {
+                nextNum = current +1;
+                if(nextNum == slideLength) nextNum = 0;
+                sliderActive();
+            }, 2000);
+            $slider.find("slide-container").attr("aria-live", "off");
+        }
+        autoPlay();
+     */
+        
+        // 반복기능 실행 함수
+        function sliderActive() {
+            // .active 
+
+            // div animate() left : 0 -> left : -100% / left : 100% -> left : 0
+            $sliderItem.eq(current).css("left", "0px").stop().animate({left : "-100%"},function () {
+                $(this).hide();
+            })
+            $sliderItem.eq(nextNum).css({
+                display : "block",
+                left : "100%"
+            }).stop().animate({left : 0});
+            current = nextNum; // animate 완료 후 인덱스번호 다시 대입
+            
+        }
+}
+
+
     // webAcce mouseenter, focus event
-    $webAcce.find(".web-slide-area .slide-bg").on({
+    $webAcce.find(".web-slide-area").on({
        "mouseenter" : function() { //enter
             $webAcce.find(".swiper-button-prev, .swiper-button-next").addClass("active");
         },
@@ -504,7 +644,7 @@ $(document).ready(function () {
         }
     });
 
-    // 3D cube swiper
+    // webAcce 3D cube swiper
     var swiper3D = new Swiper('.web-slide-area .swiper-container', {
         effect: 'cube',
         grabCursor: true,
@@ -518,7 +658,7 @@ $(document).ready(function () {
             delay: 2000,
           },
         autoplay : false
-      });
+    });
 
     // aboutMe wheel event
     $aboutMe.on("mousewheel DOMMouseScroll", function(e) {
@@ -546,8 +686,7 @@ $(document).ready(function () {
                 }, function() {
                     $webAcce.stop().delay(800).fadeIn();
                 });
-                $indicator.eq(3).addClass("active").siblings().removeClass("active");
-                
+                $indicator.eq(3).addClass("active").siblings().removeClass("active");        
             }
         },50);
     });
