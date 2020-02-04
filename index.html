@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale user-scalable=no">
     <title>김동현 포트폴리오</title>
-    <link rel="icon" href="asset/images/favicon.ico">
-    <link rel="apple-touch-icon" href="asset/images/apple-icon-57x57.png">
-    <link rel="shortcut icon" href="asset/images/android-icon-48x48.png">
+    <link rel="icon" href="asset/images/common/favicon.ico">
+    <link rel="apple-touch-icon" href="asset/images/common/apple-icon-57x57.png">
+    <link rel="shortcut icon" href="asset/images/common/android-icon-48x48.png">
     <link rel="stylesheet" href="asset/css/swiper.css">
     <link rel="stylesheet" href="asset/css/index.css">
     <!--[if lt IE 9]>
@@ -72,7 +72,6 @@
 
     <div id="container">
         <section id="cnt-wrap">
-    
             <article id="intro">
                 <div class="fillbg"></div>
                 <div class="fillbg"></div>
@@ -150,7 +149,7 @@
                             <li>견고성</li>
                         </ul>
                     </div>
-    
+
                     <div class="cnt-about">
                         <h2>
                             <a href="#aboutMe" role="button" title="클릭시 자기소개 페이지로 이동합니다.">About me</a>
@@ -162,7 +161,6 @@
                             <li>E-Mail</li>
                         </ul>
                     </div>
-    
                 </div>
             </article>
     
@@ -241,47 +239,173 @@
             <article id="webAcce">
                 <h2>Web Accessibillity</h2>
                 <div class="web-txt-area">
-                    <div id="tabpanel1" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab1">
-                        <div class="swiper-slide">
-                            <h3>인식의 용이성</h3>
-                            <strong>1-1 텍스트 아닌 콘텐츠에는 대체 텍스트를 제공해야 한다.</strong>
-                            <p>이미지 등 텍스트가 아닌 콘텐츠를 이용할 경우, 그 의미나 용도를<br>해당 이미지와 동등하게 인식할 수 있도록 적절한<br>대체 텍스트를 간단명료하게 제공해야 한다.
-                            </p>
-                            <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
-                                공백문자로 제공하는 것이 바람직하다.</p>
+                    <div id="tabpanel1" class="web-txt-common slide-container tabpanel" role="tabpanel region" aria-labelledby="tab1" aria-roledescription="carousel" aria-label="웹 접근성 인식의 용이성">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">        
+                                <div class="swiper-slide slide1-1">
+                                    <div class="slide" role="group" aria-roledescription="slide" aria-label="2개의 슬라이드중 1">
+                                        <h3>인식의 용이성</h3>
+                                        <strong>1-1 텍스트 아닌 콘텐츠에는 대체 텍스트를 제공해야 한다.</strong>
+                                        <p>이미지 등 텍스트가 아닌 콘텐츠를 이용할 경우, 그 의미나 용도를<br>해당 이미지와 동등하게 인식할 수 있도록 적절한<br>대체 텍스트를 간단명료하게 제공해야 한다.
+                                        </p>
+                                        <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
+                                            공백문자로 제공하는 것이 바람직하다.</p>
+                                    </div>
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg1-1"></li>
+                                            <li class="slide-txt">3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide slide1-2">
+                                    <div class="slide" role="group" a
+                                    ria-roledescription="slide" aria-label="2개의 슬라이드중 2">
+                                        <h3>인식의 용이성</h3>
+                                        <strong>1-2 콘텐츠는 명확하게 전달되어야 한다.</strong>
+                                        <p>특정한 색을 구별할 수 없는 사용자나 흑백 디스플레이 사용자, 흑백 인쇄물을</p>
+                                        <p>보는 사용자가 해당 콘텐츠를 인식할 수 있도록 제공해야 한다.</p>
+                                    </div>            
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg1-2"></li>
+                                            <li class="slide-txt">4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev" tabindex="0"></div>
+                            <div class="swiper-button-next" tabindex="0"></div>
                         </div>
                     </div>
-                    <div id="tabpanel2" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab2">
-                        <div class="swiper-slide">
-                            <h3>운용의 용이성</h3>
-                            <strong>2-2 콘텐츠를 읽고 사용하는 데 충분한 시간을 제공해야 한다.</strong>
-                            <p>시간제한이 있는 콘텐츠는 시간적인 제약이 있음을 사용자에게 반드시 알려주어야 한다.
-                            </p>
-                            <p>저시력자나 지적장애인 등은 이동하거나 스크롤 되는 콘텐츠를 인지하기가 어렵다.<br>
-                                때문에 웹 콘텐츠는 사용자가 이동이나 스크롤을 일시 정지시키거나<br>
-                                지나간 콘텐츠 또는 앞으로 나타날 콘텐츠를 사용할 수 있도록 제공한다.</p>
+                    <div id="tabpanel2" class="web-txt-common slide-container tabpanel" role="tabpanel region" aria-labelledby="tab2" aria-roledescription="carousel" aria-label="웹 접근성 운용의 용이성">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide slide2-1">
+                                    <div class="slide" role="group" aria-roledescription="slide" aria-label="3개의 슬라이드중 1">
+                                        <h3>운용의 용이성</h3>
+                                        <strong>2-1 콘텐츠를 읽고 사용하는 데 충분한 시간을 제공해야 한다.</strong>
+                                        <p>자동으로 변경되는 콘텐츠는 움직임을 제어할 수 있어야 한다.</p>
+                                        <p>
+                                            자동으로 움직이는 배너를 제어할 수 있는 기능을 제공하게 되면<br>
+                                            자동으로 움직여서 놓친 정보라 하더라도 컨트롤하여 정보를 인식할 수 있습니다.
+                                        </p>
+                                    </div>
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg2-1"></li>
+                                            <li class="slide-txt">3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide slide2-2">
+                                    <div class="slide" role="group" aria-roledescription="slide" aria-label="3개의 슬라이드중 2">
+                                        <h3>운용의 용이성</h3>
+                                        <strong>2-2 콘텐츠는 쉽게 내비게이션 할 수 있어야 한다.</strong>
+                                        <p>콘텐츠의 반복되는 영역은 건너뛸 수 있어야 한다.</p>
+                                        <p>
+                                            본문 바로가기를 제공함으로써 키보드로 웹 페이지를 탐색하는 사용자도 마우스 사용자와 같이<br>
+                                            본문으로 바로 이동할 수 있어 콘텐츠를 운용하는데 원활해집니다. 이와 같이 주 메뉴 뿐만 아니라<br>
+                                            반복되는 콘텐츠 영역은 건너뛸 수 있도록 제공함으로써 운용의 용이성을 높일 수 있게 됩니다.
+                                        </p>
+                                    </div>
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg2-2"></li>
+                                            <li class="slide-txt">3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide slide2-3">
+                                    <div class="slide" role="group" aria-roledescription="slide" aria-label="3개의 슬라이드중 3">
+                                        <h3>운용의 용이성</h3>
+                                        <strong>2-3 페이지, 프레임, 콘텐츠 블록에는 적절한 제목을 제공해야한다.</strong>
+                                        <p>제목을 제공하였기 때문에 현재의 페이지가 ‘KBS 라디오’에 관한 정보가 담겨있는지 알 수 있게 됩니다.</p>
+                                        <p>
+                                            페이지의 제목은 해당 페이지의 가장 대표적인 주제나 내용으로 짧게 제공해주는 것이 좋습니다.
+                                        </p>
+                                    </div>
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg2-3"></li>
+                                            <li class="slide-txt">3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev" tabindex="0"></div>
+                            <div class="swiper-button-next" tabindex="0"></div>
                         </div>
+    
                     </div>
-                    <div id="tabpanel3" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab3">
-                        <div class="swiper-slide">
-                            <h3>이해의 용이성</h3>
-                            <strong>3-3 콘텐츠는 논리적으로 구성해야 한다.</strong>
-                            <p>복잡한 데이터를 표로 제공할 경우, 시각장애인 등도 이해할 수 있도록<br>
-                                표의 이해를 돕기 위한 내용 및 구조에 대한 정보를 제공해야 한다.
-                            </p>
-                            <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
-                                공백문자로 제공하는 것이 바람직하다.</p>
+                    <div id="tabpanel3" class="web-txt-common slide-container tabpanel" role="tabpanel" aria-labelledby="tab3" aria-roledescription="carousel" aria-label="웹 접근성 이해의 용이성">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide slide3-1">
+                                    <div class="slide" role="group" aria-roledescription="slide" aria-label="2개의 슬라이드중 1">
+                                        <h3>이해의 용이성</h3>
+                                        <strong>3-1 콘텐츠는 논리적으로 구성해야 한다.</strong>
+                                        <p>복잡한 데이터를 표로 제공할 경우, 시각장애인 등도 이해할 수 있도록<br>
+                                            표의 이해를 돕기 위한 내용 및 구조에 대한 정보를 제공해야 한다.
+                                        </p>
+                                        <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
+                                            공백문자로 제공하는 것이 바람직하다.</p>
+                                    </div>            
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg3-1"></li>
+                                            <li class="slide-txt">3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide slide3-2">
+                                    <div class="slide" role="group" aria-roledescription="slide" aria-label="2개의 슬라이드중 2">
+                                        <h3>이해의 용이성</h3>
+                                        <strong>3-2 콘텐츠는 논리적으로 구성해야 한다.</strong>
+                                        <p>복잡한 데이터를 표로 제공할 경우, 시각장애인 등도 이해할 수 있도록<br>
+                                            표의 이해를 돕기 위한 내용 및 구조에 대한 정보를 제공해야 한다.
+                                        </p>
+                                        <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
+                                            공백문자로 제공하는 것이 바람직하다.</p>
+                                    </div>            
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg3-2"></li>
+                                            <li class="slide-txt">3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev" tabindex="0"></div>
+                            <div class="swiper-button-next" tabindex="0"></div>
                         </div>
+    
                     </div>
-                    <div id="tabpanel4" class="web-txt-common swiper-container tabpanel" role="tabpanel" aria-labelledby="tab4">
-                        <div class="swiper-slide">
-                            <h3>견고성</h3>
-                            <strong>4-1 텍스트 아닌 콘텐츠에는 대체 텍스트를 제공해야 한다.</strong>
-                            <p>이미지 등 텍스트가 아닌 콘텐츠를 이용할 경우, 그 의미나 용도를<br>해당 이미지와 동등하게 인식할 수 있도록 적절한<br>대체 텍스트를 간단명료하게 제공해야 한다.
-                            </p>
-                            <p>단순히 장식이나 시각적인 형태를 위해 사용되는 콘텐츠의 경우, 보조 기술을 통해<br>해당 설명을 제공받을 때 오히려 혼란을 일으킬 가능성이 있으므로<br>대체 텍스트를
-                                공백문자로 제공하는 것이 바람직하다.</p>
-                        </div>
+                    <div id="tabpanel4" class="web-txt-common slide-container tabpanel" role="tabpanel" aria-labelledby="tab4" aria-roledescription="carousel" aria-label="웹 접근성 견고성">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="slide slide4-1" role="group" aria-roledescription="slide" aria-label="1개의 슬라이드중 1">
+                                        <h3>견고성</h3>
+                                        <strong>4-1 웹 콘텐츠는 마크업 언어의 문법을 준수해야 한다.</strong>
+                                        <p>
+                                            콘텐츠를 개발하는 과정에서 마크업 언어의 표준을 준수하고 가능한 한 문법적 오류나 모호성이 없도록 구현되어야 한다.
+                                        </p>
+                                        <p>
+                                            마크업 언어의 요소는 열고 닫음, 중첩 관계 및 속성 선언에 오류가 없어야 한다.
+                                        </p>
+                                    </div>            
+                                    <div class="web-slide-area">
+                                        <ul>
+                                            <li class="slide-bg bg4-1"></li>
+                                            <li class="slide-txt">3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev" tabindex="0"></div>
+                            <div class="swiper-button-next" tabindex="0"></div>
+                        </div>    
                     </div>
                     <ul id="acceBtn" role="tablist" aria-label="웹접근성 분석 보고서">
                         <li id="tab1" class="tab first" role="tab" aria-controls="tabpanel1">1</li>
@@ -291,41 +415,12 @@
                     </ul>
                 </div>
     
-                <div class="web-slide-area">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <!-- 상세내용 -->
-                            <div class="swiper-slide">
-                                <ul>
-                                    <li class="slide-bg"></li>
-                                    <li class="slide-txt">3</li>
-                                </ul>
-                            </div>
-                            <div class="swiper-slide">
-                                <ul>
-                                    <li class="slide-bg"></li>
-                                    <li class="slide-txt">4</li>
-                                </ul>
-                            </div>
-                            <div class="swiper-slide">
-                                <ul>
-                                    <li class="slide-bg"></li>
-                                    <li class="slide-txt">5</li>
-                                </ul>
-                            </div>
-                            <!-- 이전 다음 버튼 -->
-                            <div class="swiper-button-prev" tabindex="0"></div>
-                            <div class="swiper-button-next" tabindex="0"></div>
-                        </div>
-                    </div>
-    
-                </div>
             </article>
     
             <article id="aboutMe">
                 <svg>
                     <path class="forward po-relat" d="M1036,94 L468.3,225.2 L468.3,704.5 L1036.5,813.8 "/>
-                    <path class="forward2 po-relat" d="M1036,813.8 1602.5,705 1602.5,225 1036,94.3 "/>
+                    <path class="forward2 po-relat" d="M1036,813.8 1602.5,705 1602.5,225 1036,94 "/>
                 </svg>
                 <div>
                     <ul>
@@ -335,7 +430,7 @@
                         </li>
                         <li>
                             <strong>Skills</strong>
-                            <span>상세보기</span>
+                            <a class="skills-view" href="" role="button"><span>상세보기</span></a>
                         </li>
                         <li>
                             <strong>Name</strong>

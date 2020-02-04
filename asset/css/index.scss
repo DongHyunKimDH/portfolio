@@ -95,6 +95,7 @@ body {
     font-weight : 400;
     font-size : 18px;
     color : var(--mainColor);
+    word-break : keep-all
 }
 #skip a {
     @include transition(background 0.5s);
@@ -296,8 +297,8 @@ h3 {
         position : absolute;
     }
     div:nth-child(1), div:nth-child(2), div:nth-child(3) {
-        width : 0vw;
-        height : 50vh;
+        width : 0%;
+        height : 50%;
     }
     div:nth-child(1) {
         left : 0%;
@@ -314,15 +315,15 @@ h3 {
     div:nth-child(4) {
         left : 50%;
         top : 50%;
-        width : 50vw;
-        height : 0vh;
+        width : 50%;
+        height : 0%;
     }
     .txt-ani {
         left : 50%;
         top : 50%;
-        margin : -10vh 0px 0px -20vw;
-        width : 40vw;
-        height : 20vh;
+        margin : -10% 0px 0px -20%;
+        width : 40%;
+        height : 20%;
         color : #fff;
         font-size : 70px;
         text-align : center;
@@ -392,7 +393,7 @@ h3 {
         .scroll-fill {
             @include transition(width 0.6s);
             display : block;
-            width : 5%;
+            width : 0%;
             height : 3px;
             background : var(--mainColor);
         }
@@ -414,23 +415,23 @@ h3 {
             }
         }
         .cnt-project {
-            left : 497px;
-            top : 310px;
+            left : 17.3%;
+            top : 33%;
             .margin30 {
                 margin-bottom : 30px;
             }
         }
         .cnt-skills {
-            left : 1064px;
-            top : 211px;
+            left : 37%;
+            top : 22.5%;
         }
         .cnt-webAcce {
-            left : 1665px;
-            top : 368px;
+            left : 58%;
+            top : 39.4%;
         }
         .cnt-about {
-            left : 2276px;
-            top : 300px;
+            left : 79.03%;
+            top : 32.1%;
         }
         .cnt-skills, .cnt-about {
             ul {
@@ -527,60 +528,84 @@ h3 {
     }
     > div {
         float : left;
-        width : 50vw;
-        height : 100vh;
+        width : 100%;
+        height : 100%;
     }
-    .web-txt-area {
-        display : flex;
-        flex-wrap : wrap;
-        justify-content : center;
-        align-items : center;
-        .web-txt-common {
-            margin-bottom : 8em;
-            width : auto;
-            height : auto;
-            h3, strong, p {
-                color : $black;
-            }
-            h3 {
-                font-size : 30px;
-                text-align : center;
-                margin-bottom : 60px;
-            }
-            strong {
-                font-size : 20px;
-                display : block;
-                margin-bottom : 60px;
-            }
-            p + p {
-                margin-top : 40px;
-            }
+    .web-txt-common {
+        width : 100%;
+        height : 100%;
+        h3, strong, p {
+            color : $black;
         }
-        #acceBtn {
-            position : absolute;
-            bottom : 10rem;
+        strong, p {
+            padding-left : 15.5%;
+        }
+        h3 {
+            font-size : 30px;
             text-align : center;
-            li {
-                @include transition(color 0.5s, background 0.5s);
-                @include borderRadius(10px);
-                width : 40px;
-                height : 40px;
-                line-height : 40px;
-                float : left;
-                margin-left : 63px;
-                &.active {
-                    color : #fff;
-                    background : var(--mainColor);
-                }
-            }
-            li:first-child {
-                margin-left : 0px;
-            }
+            margin-bottom : 60px;
+        }
+        strong {
+            font-size : 20px;
+            display : block;
+            margin-bottom : 60px;
+        }
+        p + p {
+            margin-top : 40px;
         }
     }
+    .tabpanel {
+        display : none;
+        &.active {
+            display : block;
+        }
+    }
+    .swiper-container {
+        height : 100%;
+        .swiper-slide {
+            display : table;
+        }
+        .slide {
+            display : table-cell;
+            vertical-align : middle;
+            width : 50%;
+            padding-bottom : 8%;
+        }
+    }
+
+
+    #acceBtn {
+        position : absolute;
+        left : calc(25% - 174.5px);
+        bottom : 12%;
+        text-align : center;
+        z-index : 50;
+        li {
+            @include transition(color 0.5s, background 0.5s);
+            @include borderRadius(10px);
+            width : 40px;
+            height : 40px;
+            line-height : 40px;
+            float : left;
+            margin-left : 63px;
+            cursor : pointer;
+            &.active {
+                color : #fff;
+                background : var(--mainColor);
+            }
+        }
+        li:first-child {
+            margin-left : 0px;
+        }
+    }
+
     .web-slide-area {
-        position : relative;
-        .swiper-container, .swiper-container .swiper-slide > ul {
+        position : absolute;
+        left : 50%;
+        top : 0%;
+        width : 50%;
+        height : 100%;
+        ul {
             height : 100%;
         }
         .slide-bg, .slide-txt {
@@ -590,34 +615,60 @@ h3 {
             height : 50%;
         }
         .slide-bg {
-            background : $gray no-repeat center top;
+            background : no-repeat center center;
+            @include backgroundSize(cover);
+            &.bg1-1 {
+                background-image : url("../images/accessibillity/acce1-1.jpg");
+            }
+            &.bg1-2 {
+                background-image : url("../images/accessibillity/acce1-2.jpg");
+            }
+            &.bg2-1 {
+                background-image : url("../images/accessibillity/acce2-1.jpg");
+            }
+            &.bg2-2 {
+                background-image : url("../images/accessibillity/acce2-2.jpg");
+            }
+            &.bg2-3 {
+                background-image : url("../images/accessibillity/acce2-2-title.jpg");
+                background-position : left top;
+            }
+            &.bg3-1 {
+                background-image : url("../images/accessibillity/acce3-1.jpg");
+            }
+            &.bg3-2 {
+                background-image : url("../images/accessibillity/acce3-2.jpg");
+            }
+            &.bg4-1 {
+                background-image : url("../images/accessibillity/acce4-1.jpg");
+            } 
         }
         .slide-txt {
             background : var(--mainColor);
             color : #fff;
         }
-        .swiper-button-prev, .swiper-button-next {
-            @include transition(transform 0.3s, opacity 0.3s);
-            top : 24%;
-            &.active {
-                @include transform(translateX(0px));
-                opacity : 1;
-            }
-        }
-        .swiper-button-prev {
-            @include transform(translateX(-60px));
-            opacity : 0;
-        }
-        .swiper-button-next {
-            @include transform(translateX(60px));
-            opacity : 0;
-        }
-        .swiper-button-prev:after, .swiper-button-next:after {
-            color : #fff;
-            text-shadow : 0px 0px 7px $black;
+    }
+    .swiper-button-prev, .swiper-button-next {
+        @include transition(transform 0.3s, opacity 0.3s);
+        top : 24%;
+        &.active {
+            @include transform(translateX(0px));
+            opacity : 1;
         }
     }
-    
+    .swiper-button-prev {
+        @include transform(translateX(-60px));
+        opacity : 0;
+        left : calc(50% + 10px);
+    }
+    .swiper-button-next {
+        @include transform(translateX(60px));
+        opacity : 0;
+    }
+    .swiper-button-prev:after, .swiper-button-next:after {
+        color : #fff;
+        text-shadow : 0px 0px 7px $black;
+    }
 }
 #aboutMe {
     display : none;
@@ -646,11 +697,12 @@ h3 {
     div {
         position : absolute;
         left : calc(50% - 400px);
-        top : calc(50% - 105px);
+        top : calc(50% - 140px);
         ul {
             text-align : center;
             li {
                 @include transition(color 1.2s);
+                color : var(--mainColor);
                 width : 800px;
                 height : 70px;
                 strong,span {
@@ -662,11 +714,9 @@ h3 {
                     font-size : 30px;
                     padding-right : 60px;
                     width : 180px;
-                    
                 }
                 span {
                     font-size : 22px;
-                    color : $black;
                 }
                 &:first-child span {
                     line-height : 1.5;
@@ -724,12 +774,37 @@ h3 {
     }
 }
 
-@media all and (max-width : 1260) {
+@media all and (max-width : 1280px) {
+    #intro {
+        .txt-ani {
+            font-size : 48px;
+        }
+        .intro-down-arr {
+            @include borderRadius(15px);
+            @include boxSizing;
+            bottom : 60px;
+            left : calc(50% - 10px);
+            width : 30px;
+            height : 50px;
+            border : 1px solid var(--mainColor);
+            svg {
+                @include animation(scrolldown 1.2s 5s infinite);
+                fill : none;
+                stroke : var(--mainColor);
+                stroke-width : 1px;
+                margin-left : -1px;
+            }
+            .arr-down {
+                @include animation(lineAni 1s 4s linear 1 both);
+                stroke-dasharray : 28.284271240234375;
+                stroke-dashoffset : 28.284271240234375;
+            }
+        }
+    }    
+}
+@media all and (max-width : 760px) {
 
 }
-@media all and (max-width : 760) {
-
-}
-@media all and (max-width : 480) {
+@media all and (max-width : 480px) {
 
 }

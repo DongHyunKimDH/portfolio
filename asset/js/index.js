@@ -14,6 +14,9 @@ $(document).ready(function () {
     var articleLength = $("#cnt-wrap article").length;
     var winWidth;
     var ContentsWidth;
+    var $tabBtn = $(".tab");
+
+
     
     var resizeTimer = 0;
     var introTimer = 0;
@@ -26,16 +29,16 @@ $(document).ready(function () {
     var $mainBlack = "#333435";
     var $mainBlue = "#7ec6c5";
     var $mainRed = "#cb6586";
+
     // Intro
     function introAni() {
         $("#intro *").removeAttr("style");
+        $indicator.eq(0).addClass("active");
         $(".deco-line1, .deco-line2").css({
             left : "50%",
-            top : "210px",
-            height : "650px"
+            top : "22.48%",
+            height : "58.3%"
         });
-        
-
         //  배경색 채우기
         $FillDiv.eq(0).stop().animate({width: "50%"}, 200);
         $FillDiv.eq(1).stop().delay(180).animate({width: "50%"}, 200);
@@ -52,7 +55,6 @@ $(document).ready(function () {
                 }
                 $IntroTxt.eq(introArray[i] - 1).stop().delay(i * 30).animate({opacity: 1});
             }
-            $indicator.eq(0).addClass("active");
         });
     
         setTimeout(function() { // Fade된 글자색 바꾸기
@@ -67,11 +69,11 @@ $(document).ready(function () {
         // line 애니메이트
         $line.eq(0).stop().delay(4000).animate({
             left : "27.28%",
-            height : "500px"
+            height : "53.3%"
         });
         $line.eq(1).stop().delay(4000).animate({
             left : "73%",
-            height : "500px"
+            height : "53.3%"
         });
         $(".deco-line3, .deco-line4").css("opacity", 0);
     }
@@ -105,6 +107,7 @@ $(document).ready(function () {
                 break;
             }
         }
+        $(".color-btn-active").removeClass("active");
     })
     // indicator
     $indicator.on("click",function() {
@@ -183,7 +186,10 @@ $(document).ready(function () {
                     height : "100%",
                     opacity : 1
                 },function() {
-                    $(window).trigger("resize");
+                    $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
+                    $('.tab:first-of-type').attr('aria-selected', true);
+                    $('.tabpanel:first-of-type').attr('aria-hidden', false);
+                    tabActive($("#tabpanel1"));
                 });
                 break;
             }
@@ -204,6 +210,9 @@ $(document).ready(function () {
                     height : "480px"
                 });
                 $line.eq(3).css("opacity", "0");
+                $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"},function() {
+                    $line.css("height","0px");
+                });
                 break;
             }
         }
@@ -255,6 +264,7 @@ $(document).ready(function () {
             if($contents.is(":animated")) return false;
             var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
             if(delta > 0 && articleLength > 0) { // 휠 올릴때
+                var fillWidth = $(".scroll-fill").width();
                 $("#contents .hor, .deco-line").stop().animate({marginLeft : scrollX+=120},250,"easeOutCubic",function() {
                     if(scrollX > 0) {
                         $(this).stop().animate({marginLeft : 0}, function() {
@@ -292,13 +302,30 @@ $(document).ready(function () {
                         },2500)
                     }
                 });
+                $(".scroll-fill").stop().animate({
+                    width : fillWidth = -scrollX/($(document).width() - (winWidth*0.5))*100
+                    
+                },function() {
+                    console.log(fillWidth,scrollX,($(document).width() - (winWidth*0.5)));
+                });
             }
             else if(delta < 0) { // 휠내릴때
                 ContentsWidth = $("#contents .hor").outerWidth();
+                $(".scroll-fill").stop().animate({
+                    width : -scrollX/($(document).width() - (winWidth*0.5))*100
+                },function() {
+                    console.log(fillWidth,scrollX,($(document).width() - (winWidth*0.5)));
+                    if(-scrollX >= ($(document).width() - (winWidth*0.5))*100) {
+                        alert();
+                        $(".scroll-fill").stop().animate({
+                            width : "100%"
+                        });
+                    }
+                });
                 $("#contents .hor, .deco-line").stop().animate({marginLeft : scrollX-=120},50,"easeOutCubic",function() {
                     if(scrollX <= ($(document).width() - (winWidth*0.5))*-1) {
-                        $contents.find(".next-txt").addClass("active");
                         $(this).stop().animate({marginLeft : ($(document).width() - (winWidth*0.5))*-1});
+                        $contents.find(".next-txt").addClass("active");
                         setTimeout(function() {
                             scrollX = ($(document).width() - (winWidth*0.5))*-1;
                         },50);
@@ -335,12 +362,12 @@ $(document).ready(function () {
                                     });
                                     $project.stop().delay(800).fadeIn();
                                     $indicator.eq(2).addClass("active").siblings().removeClass("active");
-        
                                 }
                             })
                         }
                     }
                 });
+                
             }
         },30);
     });
@@ -356,24 +383,28 @@ $(document).ready(function () {
                 $line.eq(0).stop().animate({
                     left : "24%",
                     top : "300px",
-                    height : "520px"
+                    height : "520px",
+                    marginLeft : "-960px"
                 });
                 $line.eq(1).stop().animate({
                     left : "53.5%",
                     top : "191px",
-                    height : "620px"
+                    height : "620px",
+                    marginLeft : "-960px"
                 });
                 $line.eq(2).stop().animate({
                     left : "85%",
                     top : "270px",
                     height : "510px",
-                    opacity : 1
+                    opacity : 1,
+                    marginLeft : "-960px"
                 });
                 $line.eq(3).stop().animate({
                     left : "117%",
                     top : "240px",
                     height : "570px",
-                    opacity : 1
+                    opacity : 1,
+                    marginLeft : "-960px"
                 }, function() {
                     $contents.stop().delay(800).fadeIn();
                     $indicator.eq(1).addClass("active").siblings().removeClass("active");
@@ -402,7 +433,10 @@ $(document).ready(function () {
                     $(window).trigger("resize");
                 });
                 $indicator.eq(3).addClass("active").siblings().removeClass("active");
-
+                $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
+                $('.tab:first-of-type').attr('aria-selected', true);
+                $('.tabpanel:first-of-type').attr('aria-hidden', false);
+                tabActive($("#tabpanel1"));   
             }
         });
     })
@@ -479,7 +513,9 @@ $(document).ready(function () {
                 }, function() {
                     $aboutMe.stop().delay(800).fadeIn();
                     $aboutMe.css("zIndex","501");
-                    $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"});
+                    $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"},function() {
+                        $line.css("height","0px");
+                    });
                 });
                 $indicator.eq(4).addClass("active").siblings().removeClass("active");
             }
@@ -487,9 +523,124 @@ $(document).ready(function () {
     })
 
     // webAcce btn click event
+    $tabBtn.on("click", function() {
+        var $target = $(this);
+        tabActive($target);
+    });
+
+    // webAcce tabBtn 키보드제어
+    $tabBtn.on("keydown", function(e) 
+    { // 방향키 37 39 , esc space 27 32 , home end 36 35 enter 13
+        var key = e.keyCode;
+        switch(key)
+        {
+            case 13 : //enter
+            case 32 : { // space bar
+                var $target = $(this);
+                tabActive($target);
+            }
+            case 27 : {
+
+                break;
+            }
+
+            case 35 : { // end
+                e.preventDefault();
+                $(this).siblings(".last").attr("tabIndex",0).focus();
+                break;
+            }
+            case 36 : { // home
+                e.preventDefault();
+                $(this).attr("tabIndex",-1).siblings(".first").attr("tabIndex",0).focus();
+                break;
+            }
+            case 37 : { // 이전방향키
+                $(this).attr("tabIndex", -1).prev().focus();
+                if($(this).hasClass("first")) 
+                    $(this).siblings(".last").attr("tabIndex", 0).focus();
+                else
+                    $(this).prev().attr("tabIndex",0).focus();
+                break;
+            }
+            case 39 : { // 다음방향키
+                $(this).attr("tabIndex",-1).next().focus();
+                if($(this).hasClass("last"))
+                    $(this).siblings(".first").attr("tabIndex",0).focus();
+                else 
+                    $(this).next().attr("tabIndex",0).focus();
+                break;
+            }
+
+        }
+    });
+
+    // webAcce btn Active
+    function tabActive($target) {
+        $target.addClass("active").attr({"tabIndex" : 0, "aria-selected" : "true"}).siblings().removeClass("active").attr({"tabIndex" : -1, "aria-selected" : "false"});
+        $("#"+$target.attr("aria-controls")).addClass("active").attr({"tabIndex" : 0, "aria-hidden" : "false"}).siblings(".tabpanel").removeClass("active").attr({"tabIndex" : -1, "aria-hidden" : "true"});
+        var swiper1 = new Swiper('#tabpanel1 .swiper-container', {
+            effect: 'cube',
+            grabCursor: true,
+            cubeEffect: {
+              shadow: false,
+              slideShadows: false,
+              shadowOffset: 20,
+              shadowScale: 0.94,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        var swiper2 = new Swiper('#tabpanel2 .swiper-container', {
+            effect: 'cube',
+            grabCursor: true,
+            cubeEffect: {
+              shadow: false,
+              slideShadows: false,
+              shadowOffset: 20,
+              shadowScale: 0.94,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        var swiper3 = new Swiper('#tabpanel3 .swiper-container', {
+            effect: 'cube',
+            grabCursor: true,
+            cubeEffect: {
+              shadow: false,
+              slideShadows: false,
+              shadowOffset: 20,
+              shadowScale: 0.94,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        var swiper4 = new Swiper('#tabpanel4 .swiper-container', {
+            effect: 'cube',
+            grabCursor: true,
+            cubeEffect: {
+              shadow: false,
+              slideShadows: false,
+              shadowOffset: 20,
+              shadowScale: 0.94,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
     
+    }
+    // webAcce slide btn click event
+
+
     // webAcce mouseenter, focus event
-    $webAcce.find(".web-slide-area .slide-bg").on({
+    $webAcce.find(".web-slide-area, .swiper-button-prev, .swiper-button-next").on({
        "mouseenter" : function() { //enter
             $webAcce.find(".swiper-button-prev, .swiper-button-next").addClass("active");
         },
@@ -504,21 +655,7 @@ $(document).ready(function () {
         }
     });
 
-    // 3D cube swiper
-    var swiper3D = new Swiper('.web-slide-area .swiper-container', {
-        effect: 'cube',
-        grabCursor: true,
-        cubeEffect: {
-          shadow: false,
-          slideShadows: false,
-          shadowOffset: 20,
-          shadowScale: 0.94,
-        },
-        autoplay: {
-            delay: 2000,
-          },
-        autoplay : false
-      });
+    // webAcce 3D cube swiper
 
     // aboutMe wheel event
     $aboutMe.on("mousewheel DOMMouseScroll", function(e) {
@@ -546,8 +683,7 @@ $(document).ready(function () {
                 }, function() {
                     $webAcce.stop().delay(800).fadeIn();
                 });
-                $indicator.eq(3).addClass("active").siblings().removeClass("active");
-                
+                $indicator.eq(3).addClass("active").siblings().removeClass("active");        
             }
         },50);
     });

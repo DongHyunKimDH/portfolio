@@ -43,7 +43,7 @@ img {
   border: none;
   max-width: 100%; }
 
-header, nav, section, footer {
+header, nav, section, article, footer {
   display: block; }
 
 strong {
@@ -81,7 +81,8 @@ body {
   font-family: "NotoSans";
   font-weight: 400;
   font-size: 18px;
-  color: var(--mainColor); }
+  color: var(--mainColor);
+  word-break: keep-all; }
 
 #skip a {
   -webkit-transition: background 0.5s;
@@ -530,7 +531,9 @@ h3 {
     justify-content: center;
     align-items: center; }
     #webAcce .web-txt-area .web-txt-common {
-      margin-bottom: 8em; }
+      margin-bottom: 8em;
+      width: 700px;
+      height: auto; }
       #webAcce .web-txt-area .web-txt-common h3, #webAcce .web-txt-area .web-txt-common strong, #webAcce .web-txt-area .web-txt-common p {
         color: #333333; }
       #webAcce .web-txt-area .web-txt-common h3 {
@@ -543,10 +546,25 @@ h3 {
         margin-bottom: 60px; }
       #webAcce .web-txt-area .web-txt-common p + p {
         margin-top: 40px; }
+    #webAcce .web-txt-area .tabpanel {
+      display: none; }
+      #webAcce .web-txt-area .tabpanel.active {
+        display: block; }
+    #webAcce .web-txt-area .slide-container {
+      position: relative;
+      overflow: hidden; }
+      #webAcce .web-txt-area .slide-container > div {
+        display: none;
+        margin-left: 100%;
+        top: 0px; }
+      #webAcce .web-txt-area .slide-container div:nth-of-type(1) {
+        display: block;
+        margin-left: 0px; }
     #webAcce .web-txt-area #acceBtn {
       position: absolute;
-      bottom: 10rem; }
-      #webAcce .web-txt-area #acceBtn button {
+      bottom: 10rem;
+      text-align: center; }
+      #webAcce .web-txt-area #acceBtn li {
         -webkit-transition: color 0.5s, background 0.5s;
         -moz-transition: color 0.5s, background 0.5s;
         -o-transition: color 0.5s, background 0.5s;
@@ -556,16 +574,89 @@ h3 {
         border-radius: 10px;
         width: 40px;
         height: 40px;
-        margin-left: 63px; }
-        #webAcce .web-txt-area #acceBtn button.active {
+        line-height: 40px;
+        float: left;
+        margin-left: 63px;
+        cursor: pointer; }
+        #webAcce .web-txt-area #acceBtn li.active {
           color: #fff;
           background: var(--mainColor); }
-      #webAcce .web-txt-area #acceBtn button:first-child {
+      #webAcce .web-txt-area #acceBtn li:first-child {
         margin-left: 0px; }
+  #webAcce .web-slide-area {
+    position: relative; }
+    #webAcce .web-slide-area .swiper-container, #webAcce .web-slide-area .swiper-container .swiper-slide > ul {
+      height: 100%; }
+    #webAcce .web-slide-area .slide-bg, #webAcce .web-slide-area .slide-txt {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      float: left;
+      width: 100%;
+      height: 50%; }
+    #webAcce .web-slide-area .slide-bg {
+      background: #aaaaaa no-repeat center top; }
+    #webAcce .web-slide-area .slide-txt {
+      background: var(--mainColor);
+      color: #fff; }
+    #webAcce .web-slide-area .swiper-button-prev, #webAcce .web-slide-area .swiper-button-next {
+      -webkit-transition: transform 0.3s, opacity 0.3s;
+      -moz-transition: transform 0.3s, opacity 0.3s;
+      -o-transition: transform 0.3s, opacity 0.3s;
+      transition: transform 0.3s, opacity 0.3s;
+      top: 24%; }
+      #webAcce .web-slide-area .swiper-button-prev.active, #webAcce .web-slide-area .swiper-button-next.active {
+        -webkit-transform: translateX(0px);
+        -moz-transform: translateX(0px);
+        -o-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        transform: translateX(0px);
+        opacity: 1; }
+    #webAcce .web-slide-area .swiper-button-prev {
+      -webkit-transform: translateX(-60px);
+      -moz-transform: translateX(-60px);
+      -o-transform: translateX(-60px);
+      -ms-transform: translateX(-60px);
+      transform: translateX(-60px);
+      opacity: 0; }
+    #webAcce .web-slide-area .swiper-button-next {
+      -webkit-transform: translateX(60px);
+      -moz-transform: translateX(60px);
+      -o-transform: translateX(60px);
+      -ms-transform: translateX(60px);
+      transform: translateX(60px);
+      opacity: 0; }
+    #webAcce .web-slide-area .swiper-button-prev:after, #webAcce .web-slide-area .swiper-button-next:after {
+      color: #fff;
+      text-shadow: 0px 0px 7px #333333; }
 
 #aboutMe {
   display: none;
   position: relative; }
+  #aboutMe svg {
+    display: block;
+    width: 100%;
+    height: 100%; }
+    #aboutMe svg .forward {
+      -webkit-animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      -moz-animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      -o-animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      animation: forwardAni 1.2s 0.4s linear 1 forwards;
+      fill: none;
+      stroke: var(--mainColor);
+      stroke-width: 3px;
+      stroke-dasharray: 1640.58056640625;
+      stroke-dashoffset: 1640.58056640625; }
+    #aboutMe svg .forward2 {
+      -webkit-animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      -moz-animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      -o-animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      animation: reverseAni 1.2s 0.4s linear 1 forwards;
+      fill: none;
+      stroke: var(--mainColor);
+      stroke-width: 3px;
+      stroke-dasharray: 1638.235107421875;
+      stroke-dashoffset: 1638.235107421875; }
   #aboutMe div {
     position: absolute;
     left: calc(50% - 400px);
@@ -573,6 +664,10 @@ h3 {
     #aboutMe div ul {
       text-align: center; }
       #aboutMe div ul li {
+        -webkit-transition: color 1.2s;
+        -moz-transition: color 1.2s;
+        -o-transition: color 1.2s;
+        transition: color 1.2s;
         width: 800px;
         height: 70px; }
         #aboutMe div ul li strong, #aboutMe div ul li span {
@@ -625,5 +720,53 @@ h3 {
     stroke-dashoffset: 28.284271240234375; }
   100% {
     stroke-dashoffset: 0; } }
+@-webkit-keyframes forwardAni {
+  0% {
+    stroke-dashoffset: 1640.58056640625; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor); } }
+@-moz-keyframes forwardAni {
+  0% {
+    stroke-dashoffset: 1640.58056640625; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor); } }
+@keyframes forwardAni {
+  0% {
+    stroke-dashoffset: 1640.58056640625; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor); } }
+@-webkit-keyframes reverseAni {
+  0% {
+    stroke-dashoffset: 1638.235107421875; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor); } }
+@-moz-keyframes reverseAni {
+  0% {
+    stroke-dashoffset: 1638.235107421875; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor); } }
+@keyframes reverseAni {
+  0% {
+    stroke-dashoffset: 1638.235107421875; }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent; }
+  100% {
+    fill: var(--mainColor); } }
 
 /*# sourceMappingURL=index-back.css.map */
