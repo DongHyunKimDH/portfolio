@@ -57,7 +57,7 @@ img {
     border : none;
     max-width : 100%;
 }
-header, nav, section, footer {
+header, nav, section, article, footer {
     display : block;
 }
 strong {
@@ -95,6 +95,7 @@ body {
     font-weight : 400;
     font-size : 18px;
     color : var(--mainColor);
+    word-break : keep-all
 }
 #skip a {
     @include transition(background 0.5s);
@@ -537,6 +538,8 @@ h3 {
         align-items : center;
         .web-txt-common {
             margin-bottom : 8em;
+            width : 700px;
+            height : auto;
             h3, strong, p {
                 color : $black;
             }
@@ -554,33 +557,113 @@ h3 {
                 margin-top : 40px;
             }
         }
+        .tabpanel {
+            display : none;
+            &.active {
+                display : block;
+            }
+        }
+        .slide-container {
+            position : relative;
+            overflow : hidden;
+            > div {
+                display : none;
+                margin-left : 100%;
+                top : 0px;            
+            }
+            & div:nth-of-type(1) {
+                display : block;
+                margin-left : 0px;
+            }
+        }
         #acceBtn {
             position : absolute;
             bottom : 10rem;
-            button {
+            text-align : center;
+            li {
                 @include transition(color 0.5s, background 0.5s);
                 @include borderRadius(10px);
                 width : 40px;
                 height : 40px;
+                line-height : 40px;
+                float : left;
                 margin-left : 63px;
+                cursor : pointer;
                 &.active {
                     color : #fff;
                     background : var(--mainColor);
                 }
             }
-            button:first-child {
+            li:first-child {
                 margin-left : 0px;
             }
         }
     }
     .web-slide-area {
-
+        position : relative;
+        .swiper-container, .swiper-container .swiper-slide > ul {
+            height : 100%;
+        }
+        .slide-bg, .slide-txt {
+            @include boxSizing;
+            float : left;
+            width : 100%;
+            height : 50%;
+        }
+        .slide-bg {
+            background : $gray no-repeat center top;
+        }
+        .slide-txt {
+            background : var(--mainColor);
+            color : #fff;
+        }
+        .swiper-button-prev, .swiper-button-next {
+            @include transition(transform 0.3s, opacity 0.3s);
+            top : 24%;
+            &.active {
+                @include transform(translateX(0px));
+                opacity : 1;
+            }
+        }
+        .swiper-button-prev {
+            @include transform(translateX(-60px));
+            opacity : 0;
+        }
+        .swiper-button-next {
+            @include transform(translateX(60px));
+            opacity : 0;
+        }
+        .swiper-button-prev:after, .swiper-button-next:after {
+            color : #fff;
+            text-shadow : 0px 0px 7px $black;
+        }
     }
     
 }
 #aboutMe {
     display : none;
     position : relative;
+    svg {
+        display : block;
+        width : 100%;
+        height : 100%;
+        .forward {
+            @include animation(forwardAni 1.2s 0.4s linear 1 forwards);
+            fill : none;
+            stroke : var(--mainColor);
+            stroke-width : 3px;
+            stroke-dasharray : 1640.58056640625;
+            stroke-dashoffset : 1640.58056640625;
+        }
+        .forward2 {
+            @include animation(reverseAni 1.2s 0.4s linear 1 forwards);
+            fill : none;
+            stroke : var(--mainColor);
+            stroke-width : 3px;
+            stroke-dasharray : 1638.235107421875;
+            stroke-dashoffset : 1638.235107421875;
+        }
+    }
     div {
         position : absolute;
         left : calc(50% - 400px);
@@ -588,6 +671,7 @@ h3 {
         ul {
             text-align : center;
             li {
+                @include transition(color 1.2s);
                 width : 800px;
                 height : 70px;
                 strong,span {
@@ -614,6 +698,7 @@ h3 {
     }
 }
 
+
 @include keyframes(scrolldown) {
     0%{
         margin-top : 0px;
@@ -631,6 +716,32 @@ h3 {
     }
     100% {
         stroke-dashoffset : 0;
+    }
+}
+@include keyframes(forwardAni) {
+    0% {
+        stroke-dashoffset : 1640.58056640625;
+    }
+    80% {
+        stroke-dashoffset : 0;
+        fill : transparent;
+    }
+    100% {
+        fill : var(--mainColor);
+        // opacity : 0.9;
+    }
+}
+@include keyframes(reverseAni) {
+    0% {
+        stroke-dashoffset : 1638.235107421875;
+    }
+    80% {
+        stroke-dashoffset : 0;
+        fill : transparent;
+    }
+    100% {
+        fill : var(--mainColor);
+        // opacity : 0.9;
     }
 }
 

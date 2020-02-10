@@ -280,12 +280,80 @@ h3 {
         border-color : var(--mainColor);
     }
 }
+.menu {
+    position : absolute;
+    width : 50px;
+    height : 50px;
+    z-index : 800;
+    right : 10px;
+    top : 10px;
+    display : none;
+    .line {
+        @include borderRadius(8px);
+        @include transition(all 0.5s);
+        position : absolute;
+        right : 10px;
+        width : 30px;
+        height : 4px;
+        background : var(--mainColor);
+    }
+    .m-top {
+        top : 10px;
+    }
+    .m-mid {
+        top : 20px;
+    }
+    .m-btm {
+        top : 30px;
+    }
+    &.active .m-top {
+        @include transform(rotate(315deg));
+        top : 20px;
+    }
+    &.active .m-mid {
+        opacity : 0;
+        @include transform(rotate(-1080deg));
+    }
+    &.active .m-btm {
+        @include transform(rotate(-315deg));
+        top : 20px;
+    }
+}
 
+#gnb {
+    @include transform(scale(0));
+    @include transition(all 0.7s);
+    @include boxSizing;
+    position : fixed;
+    left : 0%;
+    top : 0%;
+    z-index : 600;
+    border : 1px solid var(--mainColor);
+    background : rgba(255,255,255,0.9);
+    &.active {
+        @include transform(scale(1));
+    }
+    ul {
+        font-size : 30px;
+        text-align : center;
+        margin-top : 9%;
+        li {
+            padding : 30px 0px;
+            a {
+                @include transition(transform 0.5s);
+                display : block;
+                &:hover, &:focus {
+                    @include transform(scale(1.12));
+                }
+            }
+        }
+    }
+}
 
 /* cnt */
 
 #container, #cnt-wrap, #intro, #contents,
-#project, #webAcce, #aboutMe {
+#project, #webAcce, #aboutMe, #gnb {
     width : 100%;
     height : 100%;
 }
@@ -297,8 +365,8 @@ h3 {
         position : absolute;
     }
     div:nth-child(1), div:nth-child(2), div:nth-child(3) {
-        width : 0vw;
-        height : 50vh;
+        width : 0%;
+        height : 50%;
     }
     div:nth-child(1) {
         left : 0%;
@@ -315,15 +383,16 @@ h3 {
     div:nth-child(4) {
         left : 50%;
         top : 50%;
-        width : 50vw;
-        height : 0vh;
+        width : 50%;
+        height : 0%;
     }
     .txt-ani {
+        @include transition(transform 0.5s);
         left : 50%;
         top : 50%;
-        margin : -10vh 0px 0px -20vw;
-        width : 40vw;
-        height : 20vh;
+        margin : -10% 0px 0px -20%;
+        width : 40%;
+        height : 20%;
         color : #fff;
         font-size : 70px;
         text-align : center;
@@ -393,7 +462,7 @@ h3 {
         .scroll-fill {
             @include transition(width 0.6s);
             display : block;
-            width : 5%;
+            width : 0%;
             height : 3px;
             background : var(--mainColor);
         }
@@ -407,7 +476,7 @@ h3 {
             ul {
                 color : $black;
                 li {
-                    padding-bottom : 30px;
+                    padding-bottom : 25px;
                     &:last-child {
                         padding-bottom : 0px;
                     }
@@ -415,23 +484,23 @@ h3 {
             }
         }
         .cnt-project {
-            left : 497px;
-            top : 310px;
+            left : 17.3%;
+            top : 33%;
             .margin30 {
                 margin-bottom : 30px;
             }
         }
         .cnt-skills {
-            left : 1064px;
-            top : 211px;
+            left : 37%;
+            top : 18.5%;
         }
         .cnt-webAcce {
-            left : 1665px;
-            top : 368px;
+            left : 58%;
+            top : 39.4%;
         }
         .cnt-about {
-            left : 2276px;
-            top : 300px;
+            left : 83.03%;
+            top : 32.1%;
         }
         .cnt-skills, .cnt-about {
             ul {
@@ -479,6 +548,9 @@ h3 {
             text-align : center;
             border : 1px solid var(--mainColor);
         }
+        .m-close-btn {
+            display : none;
+        }
     }
     .project-modal-area {
         @include boxSizing;
@@ -521,88 +593,96 @@ h3 {
 #webAcce {
     display : none;
     h2 {
+        @include transition(all 0.5s);
         position : fixed;
-        left : 5%;
+        left : 8%;
         top : 3%;
         margin-bottom : 0px;
     }
     > div {
         float : left;
-        width : 50vw;
-        height : 100vh;
+        width : 100%;
+        height : 100%;
     }
-    .web-txt-area {
-        display : flex;
-        flex-wrap : wrap;
-        justify-content : center;
-        align-items : center;
-        .web-txt-common {
-            margin-bottom : 8em;
-            width : 700px;
-            height : auto;
-            h3, strong, p {
-                color : $black;
-            }
-            h3 {
-                font-size : 30px;
-                text-align : center;
-                margin-bottom : 60px;
-            }
-            strong {
-                font-size : 20px;
-                display : block;
-                margin-bottom : 60px;
-            }
-            p + p {
-                margin-top : 40px;
-            }
+    .web-txt-common {
+        width : 100%;
+        height : 100%;
+        h3, strong, p {
+            color : $black;
         }
-        .tabpanel {
-            display : none;
-            &.active {
-                display : block;
-            }
+        strong, p {
+            padding-left : 15.5%;
         }
-        .slide-container {
-            position : relative;
-            overflow : hidden;
-            > div {
-                display : none;
-                position : absolute;
-                left : 100%;
-                top : 0px;            
-            }
-            & div:nth-of-type(1) {
-                display : block;
-                left : 0px;
-            }
-        }
-        #acceBtn {
-            position : absolute;
-            bottom : 10rem;
+        h3 {
+            font-size : 30px;
             text-align : center;
-            li {
-                @include transition(color 0.5s, background 0.5s);
-                @include borderRadius(10px);
-                width : 40px;
-                height : 40px;
-                line-height : 40px;
-                float : left;
-                margin-left : 63px;
-                cursor : pointer;
-                &.active {
-                    color : #fff;
-                    background : var(--mainColor);
-                }
-            }
-            li:first-child {
-                margin-left : 0px;
-            }
+            margin-bottom : 60px;
+        }
+        strong {
+            font-size : 20px;
+            display : block;
+            margin-bottom : 60px;
+        }
+        p + p {
+            margin-top : 40px;
         }
     }
+    .tabpanel {
+        opacity : 0;
+        position : absolute;
+        left : 0px;
+        top : 0px;
+
+        &.active {
+            opacity : 1;
+        }
+    }
+    .swiper-container {
+        height : 100%;
+        .swiper-slide {
+            display : table;
+        }
+        .slide {
+            display : table-cell;
+            vertical-align : middle;
+            width : 50%;
+            padding-bottom : 8%;
+        }
+    }
+
+
+    #acceBtn {
+        position : absolute;
+        left : calc(25% - 174.5px);
+        bottom : 12%;
+        text-align : center;
+        z-index : 50;
+        li {
+            @include transition(color 0.5s, background 0.5s);
+            @include borderRadius(10px);
+            width : 40px;
+            height : 40px;
+            line-height : 40px;
+            float : left;
+            margin-left : 63px;
+            cursor : pointer;
+            &.active {
+                color : #fff;
+                background : var(--mainColor);
+            }
+        }
+        li:first-child {
+            margin-left : 0px;
+        }
+    }
+
     .web-slide-area {
-        position : relative;
-        .swiper-container, .swiper-container .swiper-slide > ul {
+        position : absolute;
+        left : 50%;
+        top : 0%;
+        width : 50%;
+        height : 100%;
+        ul {
             height : 100%;
         }
         .slide-bg, .slide-txt {
@@ -612,67 +692,114 @@ h3 {
             height : 50%;
         }
         .slide-bg {
-            background : $gray no-repeat center top;
+            background : no-repeat center center;
+            @include backgroundSize(cover);
+            &.bg1-1 {
+                background-image : url("../images/accessibillity/acce1-1.jpg");
+            }
+            &.bg1-2 {
+                background-image : url("../images/accessibillity/acce1-2.jpg");
+            }
+            &.bg2-1 {
+                background-image : url("../images/accessibillity/acce2-1.jpg");
+            }
+            &.bg2-2 {
+                background-image : url("../images/accessibillity/acce2-2.jpg");
+            }
+            &.bg2-3 {
+                background-image : url("../images/accessibillity/acce2-2-title.jpg");
+                background-position : left top;
+            }
+            &.bg3-1 {
+                background-image : url("../images/accessibillity/acce3-1.jpg");
+            }
+            &.bg3-2 {
+                background-image : url("../images/accessibillity/acce3-2.jpg");
+            }
+            &.bg4-1 {
+                background-image : url("../images/accessibillity/acce4-1.jpg");
+                background-position: left top;
+            } 
         }
         .slide-txt {
-            background : var(--mainColor);
-            color : #fff;
-        }
-        .swiper-button-prev, .swiper-button-next {
-            @include transition(transform 0.3s, opacity 0.3s);
-            top : 24%;
-            &.active {
-                @include transform(translateX(0px));
-                opacity : 1;
+            @include transition(background 0.5s);
+            border-top : 1px solid var(--mainColor);
+            padding : 20px 0px 0px 20px;
+            h3 {
+                display : none;
+            }
+            strong {
+                display : none;
+                padding-left : 0px;
+            }
+            p {
+                color : var(--mainColor);
+                padding-left : 0px;
+            }
+            @at-root body.mobile #webAcce .slide-txt h3 {
+                display : block;
+            }
+            @at-root body.mobile #webAcce .slide-txt strong {
+                display : block;
             }
         }
-        .swiper-button-prev {
-            @include transform(translateX(-60px));
-            opacity : 0;
-        }
-        .swiper-button-next {
-            @include transform(translateX(60px));
-            opacity : 0;
-        }
-        .swiper-button-prev:after, .swiper-button-next:after {
-            color : #fff;
-            text-shadow : 0px 0px 7px $black;
+    }
+    .swiper-button-prev, .swiper-button-next {
+        @include transition(transform 0.3s, opacity 0.3s);
+        top : 24%;
+        &.active {
+            @include transform(translateX(0px));
+            opacity : 1;
         }
     }
-    
+    .swiper-button-prev {
+        @include transform(translateX(-60px));
+        opacity : 0;
+        left : calc(50% + 10px);
+    }
+    .swiper-button-next {
+        @include transform(translateX(60px));
+        opacity : 0;
+    }
+    .swiper-button-prev:after, .swiper-button-next:after {
+        color : #fff;
+        text-shadow : 0px 0px 7px $black;
+    }
 }
 #aboutMe {
     display : none;
     position : relative;
-    svg {
-        display : block;
-        width : 100%;
-        height : 100%;
-        .forward {
-            @include animation(forwardAni 1.2s 0.4s linear 1 forwards);
-            fill : none;
-            stroke : var(--mainColor);
-            stroke-width : 3px;
-            stroke-dasharray : 1640.58056640625;
-            stroke-dashoffset : 1640.58056640625;
+        svg {
+            display : block;
+            width : 100%;
+            height : 100%;
+            .forward {
+                @include animation(forwardAni 1.2s 0.4s linear 1 forwards);
+                fill : none;
+                stroke : var(--mainColor);
+                stroke-width : 3px;
+                stroke-dasharray : 1640.58056640625;
+                stroke-dashoffset : 1640.58056640625;
+            }
+            .forward2 {
+                @include animation(reverseAni 1.2s 0.4s linear 1 forwards);
+                fill : none;
+                stroke : var(--mainColor);
+                stroke-width : 3px;
+                stroke-dasharray : 1638.235107421875;
+                stroke-dashoffset : 1638.235107421875;
+            }
         }
-        .forward2 {
-            @include animation(reverseAni 1.2s 0.4s linear 1 forwards);
-            fill : none;
-            stroke : var(--mainColor);
-            stroke-width : 3px;
-            stroke-dasharray : 1638.235107421875;
-            stroke-dashoffset : 1638.235107421875;
-        }
-    }
+    
     div {
         position : absolute;
         left : calc(50% - 400px);
-        top : calc(50% - 105px);
+        top : calc(50% - 140px);
         ul {
             text-align : center;
             li {
                 @include transition(color 1.2s);
+                color : var(--mainColor);
                 width : 800px;
                 height : 70px;
                 strong,span {
@@ -684,11 +811,9 @@ h3 {
                     font-size : 30px;
                     padding-right : 60px;
                     width : 180px;
-                    
                 }
                 span {
                     font-size : 22px;
-                    color : $black;
                 }
                 &:first-child span {
                     line-height : 1.5;
@@ -746,12 +871,630 @@ h3 {
     }
 }
 
-@media all and (max-width : 1260) {
-
+@media all and (max-width : 1280px) {
+    body {
+        font-size : 16px;
+    }
+    h2 {
+        font-size : 35px;
+        margin-bottom : 40px;
+    }
+    h3 {
+        font-size : 25px;
+        margin-bottom : 30px;
+    }     
+    #intro {
+        .txt-ani {
+            font-size : 48px;
+        }
+    }
+    #contents {
+        .hor {
+            > div {
+                ul {
+                    li {
+                        padding-bottom : 25px;
+                    }
+                }
+            }
+        }
+    }
+    #aboutMe {
+        svg {
+            .forward {
+                @include animation(forwardAni 1.2s 0.4s linear 1 forwards);
+                fill : none;
+                stroke : var(--mainColor);
+                stroke-width : 3px;
+                stroke-dasharray : 1640.58056640625;
+                stroke-dashoffset : 1640.58056640625;
+            }
+            .forward2 {
+                @include animation(reverseAni 1.2s 0.4s linear 1 forwards);
+                fill : none;
+                stroke : var(--mainColor);
+                stroke-width : 3px;
+                stroke-dasharray : 1638.235107421875;
+                stroke-dashoffset : 1638.235107421875;
+            }
+            .path-common {
+                left : 25%;
+            }
+        }
+        div {
+            position : absolute;
+            left : calc(50% - 400px);
+            top : calc(50% - 140px);
+            ul {
+                text-align : center;
+                li {
+                    @include transition(color 1.2s);
+                    color : var(--mainColor);
+                    width : 800px;
+                    height : 70px;
+                    strong,span {
+                        float : left;
+                        line-height : 70px;
+                    }
+                    strong {
+                        text-align : left;
+                        font-size : 30px;
+                        padding-right : 60px;
+                        width : 180px;
+                    }
+                    span {
+                        font-size : 22px;
+                    }
+                    &:first-child span {
+                        line-height : 1.5;
+                    }
+                }
+            }
+        
+        }
+    }
+    
 }
-@media all and (max-width : 760) {
-
+@media all and (max-width : 1024px) {
+    body {
+        font-size : 15px;
+    }
+    h2 {
+        font-size : 30px;
+        margin-bottom : 40px;
+    }
+    h3 {
+        font-size : 20px;
+        margin-bottom : 30px;
+    }
+    .menu {
+        display : block;    
+    }
+    #fixed-line {
+        .deco-line {
+            width : 2px;
+        }
+    }
+    
+    #intro {
+        .txt-ani {
+            font-size : 40px;
+        }
+    }
 }
-@media all and (max-width : 480) {
+@media all and (max-width : 760px) {
+    body {
+        font-size : 13px;
+    }
+    h2 {
+        font-size : 22px;
+        margin-bottom : 30px;
+    }
+    h3 {
+        font-size : 16px;
+        margin-bottom : 20px;
+    }
+    #gnb {
+        ul {
+            li {
+                padding : 20px 0px;
+            }
+        }
+    }
+    
+    #intro {
+        .txt-ani {
+            font-size : 29px;
+        }
+    }
+    #contents {
+        .hor {
+            > div {
+                position : absolute;
+                ul {
+                    color : $black;
+                    li {
+                        padding-bottom : 30px;
+                        &:last-child {
+                            padding-bottom : 0px;
+                        }
+                    }
+                }
+            }
+            .cnt-project {
+                left : 17.3%;
+                top : 33%;
+                .margin30 {
+                    margin-bottom : 30px;
+                }
+            }
+            .cnt-skills {
+                left : 37%;
+                top : 22.5%;
+            }
+            .cnt-webAcce {
+                left : 58%;
+                top : 39.4%;
+            }
+            .cnt-about {
+                left : 79.03%;
+                top : 32.1%;
+            }
+            .cnt-skills, .cnt-about {
+                ul {
+                    @include transition(color 0.5s, background 0.5s);
+                    font-size : 16px;
+                    color : var(--mainColor);
+                }
+            }
+        }
+    }
+    #project {
+        .project-modal-area .modal-btn p {
+            font-size : 18px;
+        }
+    }
 
+    #webAcce {
+        h2 {
+            left : 11%;
+        }
+        .web-txt-common {
+            width : 100%;
+            height : 100%;
+            h3 {
+                font-size : 22px;
+                text-align : center;
+                margin-bottom : 40px;
+            }
+            strong {
+                font-size : 18px;
+                display : block;
+                margin-bottom : 40px;
+            }
+            p + p {
+                margin-top : 40px;
+            }
+        }
+        #acceBtn {
+            position : absolute;
+            left : calc(25% - 92.5px);
+            bottom : 12%;
+            text-align : center;
+            z-index : 50;
+            li {
+                border-radius: 6px;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                margin-left: 35px;
+            }
+        }
+        .web-slide-area {
+            position : absolute;
+            left : 50%;
+            top : 0%;
+            width : 50%;
+            height : 100%;
+            ul {
+                height : 100%;
+            }
+            .slide-bg, .slide-txt {
+                @include boxSizing;
+                float : left;
+                width : 100%;
+                height : 50%;
+            }
+            .slide-bg {
+                background : no-repeat center center;
+                @include backgroundSize(cover);
+                &.bg1-1 {
+                    background-image : url("../images/accessibillity/acce1-1.jpg");
+                }
+                &.bg1-2 {
+                    background-image : url("../images/accessibillity/acce1-2.jpg");
+                }
+                &.bg2-1 {
+                    background-image : url("../images/accessibillity/acce2-1.jpg");
+                }
+                &.bg2-2 {
+                    background-image : url("../images/accessibillity/acce2-2.jpg");
+                }
+                &.bg2-3 {
+                    background-image : url("../images/accessibillity/acce2-2-title.jpg");
+                    background-position : left top;
+                }
+                &.bg3-1 {
+                    background-image : url("../images/accessibillity/acce3-1.jpg");
+                }
+                &.bg3-2 {
+                    background-image : url("../images/accessibillity/acce3-2.jpg");
+                }
+                &.bg4-1 {
+                    background-image : url("../images/accessibillity/acce4-1.jpg");
+                } 
+            }
+            .slide-txt {
+                background : var(--mainColor);
+                color : #fff;
+                p {
+                    color : #fff
+
+                }
+            }
+        }
+    }
+    
+}
+@media all and (max-width : 670px) {
+    #project {
+        .project-modal-area .modal-btn p {
+            font-size : 15px;
+        }
+    }
+}
+
+@media all and (max-width : 501px) {
+    body, html {
+        width : 100%;
+        height : 100%;
+        overflow : hidden;
+    }
+    body {
+        font-size : 13px;
+    }
+    h2 {
+        font-size : 22px;
+        margin-bottom : 30px;
+    }
+    h3 {
+        font-size : 18px;
+        margin-bottom : 20px;
+    }
+    #gnb {
+        ul {
+            li {
+                padding : 20px 0px;
+            }
+        }
+    }
+    #color-change-btn,
+    #indicator {
+        position : fixed;
+        z-index : 799;
+    }
+    #fixed-line {
+        .deco-line {
+            @include transition(background 0.5s);
+            position : absolute;
+            width : 3px;
+            background : var(--mainColor);
+            height : 360px;
+            z-index : 500;
+        }
+        .deco-line1 {
+            left : 50%;
+            top : 210px;
+            height : 650px;
+        }
+        .deco-line2 {
+            left : 50%;
+            top : 210px;
+            height : 650px
+        }
+        .deco-line3 {
+            display : none;
+            left : 1635px;
+            top : 270px;
+            height : 510px;
+        }
+        .deco-line4 {
+            display : none;
+            left : 2246px;
+            top : 240px;
+            height : 600px;
+        } 
+    }
+    #indicator {
+        display : none;
+    }
+    #container, #cnt-wrap, #intro, #contents,
+    #project, #webAcce, #aboutMe, #gnb {
+        width : 100%;
+        height : 100%;
+    }
+
+    #intro {
+        .txt-ani {
+            font-size : 19px;
+        }
+    }
+    #contents {
+        .prev-txt, .next-txt, 
+        .scroll-border, .scroll-fill {
+            display : none;
+        }
+        .hor {
+            > div {
+                position : absolute;
+                ul {
+                    color : $black;
+                    li {
+                        padding-bottom : 30px;
+                        &:last-child {
+                            padding-bottom : 0px;
+                        }
+                    }
+                }
+            }
+            .cnt-project {
+                left : 17.3%;
+                top : 33%;
+                .margin30 {
+                    margin-bottom : 30px;
+                }
+            }
+            .cnt-skills {
+                left : 37%;
+                top : 92.5%;
+            }
+            .cnt-webAcce {
+                left : 17.3%;
+                top : 171.4%;
+            }
+            .cnt-about {
+                left : 37%;
+                top : 232.1%;
+            }
+            .cnt-skills, .cnt-about {
+                ul {
+                    @include transition(color 0.5s, background 0.5s);
+                    font-size : 16px;
+                    color : var(--mainColor);
+                }
+            }
+        }
+    }
+    
+    #project {
+        position : relative;
+        > div {
+            float : none;
+            position : absolute;
+            width : 80%;
+            height : 80%;
+        }
+        #dim {
+            width : 100%;
+            height : 100%;
+            background : rgba(0,0,0,0.8);
+        }
+        .project-txt-area {
+            display : table;
+            .project-common {
+                @include transition(all 0.6s);
+                position : absolute;
+                left: 22%;
+                top: 40%;
+                display : none;
+                vertical-align : middle;
+                background : #fff;
+                padding-top : 10px;
+                padding-left : 10px;
+                padding-bottom : 0px;
+                
+            }
+            p {
+                margin-bottom : 50px;
+                color : $black;
+            }
+            a.detail {
+                @include transition(color 0.5s, background 0.5s);
+                @include borderRadius(5px);
+                @include boxSizing;
+                display : inline-block;
+                width : 100px;
+                height : 50px;
+                line-height : 50px;
+                margin-left : 8em;
+                text-align : center;
+                border : 1px solid var(--mainColor);
+            }
+            .m-close-btn {
+                position : absolute;
+                right: -50px;
+                top: 0px;
+                background : var(--mainColor);
+                color : #fff;
+                width: 50px;
+                height: 30px;
+            }
+        }
+        .project-modal-area {
+            // display: none;
+            @include boxSizing;
+            position : absolute;
+            left: 20%;
+            top: 13%;
+            padding : 10vh 0px;
+            text-align : center;
+            h2 {
+                position: absolute;
+                left: 27%;
+                top: -7%;
+                font-size: 30px;
+                margin-bottom: 0px;
+            }
+            .modal-btn {
+                @include transition(all 0.2s);
+                @include boxSizing;
+                position : relative;
+                float : left;
+                width : 40%;
+                height : 40%;
+                background : #fff;
+                border : 15px solid rgba(var(--mainColor),0.5);
+                &:hover, &:focus {
+                    @include transform(scale(1.05));
+                    @include boxShadow(0px 0px 8px $gray);
+                    z-index : 600;
+                }
+                p {
+                    padding : 20px 0px 30px;
+                    font-size : 14px;
+                    color : $black;
+                }
+                img {
+                    width : 100%;
+                    height : auto; 
+                }
+            }
+        }
+    }
+    
+
+    #webAcce {
+        h2 {
+            position : fixed;
+            left : 35%;
+            top : 3%;
+            margin-bottom : 0px;
+        }
+        .web-txt-common {
+            width : 100%;
+            height : 100%;
+            h3 {
+                font-size : 22px;
+                text-align : center;
+                margin-bottom : 40px;
+            }
+            strong {
+                font-size : 18px;
+                display : block;
+                margin-bottom : 40px;
+            }
+            p + p {
+                margin-top : 40px;
+            }
+        }
+        .swiper-container .swiper-slide .slide {
+            display : none;
+        }
+        #acceBtn {
+            left: calc(50% - 92.5px);
+            bottom: 6%;
+            li {
+                border-radius: 6px;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                margin-left: 35px;
+            }
+        }
+        .swiper-button-prev, .swiper-button-next {
+            @include transition(transform 0.3s, opacity 0.3s);
+            top : 24%;
+            &.active {
+                @include transform(translateX(0px));
+                opacity : 1;
+            }
+        }
+        .swiper-button-prev {
+            @include transform(translateX(-60px));
+            opacity : 0;
+            left : 60px;
+        }
+        .swiper-button-next {
+            @include transform(translateX(60px));
+            opacity : 0;
+            right : 60px;
+        }
+        .swiper-button-prev:after, .swiper-button-next:after {
+            color : #fff;
+            text-shadow : 0px 0px 7px $black;
+        }
+    
+        .web-slide-area {
+            position : absolute;
+            left: 10%;
+            top: 10%;
+            width: 80%;
+            height: 80%;
+            ul {
+                height : 100%;
+            }
+            .slide-bg, .slide-txt {
+                @include boxSizing;
+                float : left;
+                width : 100%;
+                height : 50%;
+            }
+            .slide-bg {
+                background : no-repeat center center;
+                @include backgroundSize(cover);
+                &.bg1-1 {
+                    background-image : url("../images/accessibillity/acce1-1.jpg");
+                }
+                &.bg1-2 {
+                    background-image : url("../images/accessibillity/acce1-2.jpg");
+                }
+                &.bg2-1 {
+                    background-image : url("../images/accessibillity/acce2-1.jpg");
+                }
+                &.bg2-2 {
+                    background-image : url("../images/accessibillity/acce2-2.jpg");
+                }
+                &.bg2-3 {
+                    background-image : url("../images/accessibillity/acce2-2-title.jpg");
+                    background-position : left top;
+                }
+                &.bg3-1 {
+                    background-image : url("../images/accessibillity/acce3-1.jpg");
+                }
+                &.bg3-2 {
+                    background-image : url("../images/accessibillity/acce3-2.jpg");
+                }
+                &.bg4-1 {
+                    background-image : url("../images/accessibillity/acce4-1.jpg");
+                } 
+            }
+            .slide-txt {
+                background : var(--mainColor);
+                h3 {
+                    font-size : 22px;
+                    color : #fff;
+                    margin-bottom : 20px;
+                }
+                strong {
+                    color : #fff;
+                }
+                p {
+                    color : #fff;
+                    padding-left : 0px;
+                }
+                
+            }
+        }
+    }
+    
 }
