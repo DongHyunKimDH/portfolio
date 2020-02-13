@@ -54,66 +54,85 @@ $(document).ready(function () {
         contentsWidth = $("#contents .hor").outerWidth();
         contentsHeight = $("#contents .hor").outerHeight();
         if( (!$body.hasClass("mobile")) && ($contents.hasClass("active")) ) { // contents PC화면
-            $("#contents .hor, .deco-line").stop().animate({
-                marginLeft : cntMarginL,
-                marginTop : 0
-                
-            });
+            cntMarginL = $(".hor").attr("data-cntmargin");
             $contents.find(".hor > div:odd").css("textAlign","left");
             $line.eq(0).stop().animate({
+                marginLeft : cntMarginL,
+                marginTop : "0px",
                 left : "24%",
                 top : "32%",
                 height : "55.45%"
             });
             $line.eq(1).stop().animate({
+                marginLeft : cntMarginL,
+                marginTop : "0px",
                 left : "53.5%",
                 top : "20.4%",
                 height : "66.3%"
             });
             $line.eq(2).stop().animate({
+                marginLeft : cntMarginL,
+                marginTop : "0px",
                 left : "85%",
                 top : "28.8%",
                 height : "54.5%",
                 opacity : 1
             });
             $line.eq(3).stop().animate({
+                marginLeft : cntMarginL,
+                marginTop : "0px",
                 left : "122%",
                 top : "25.6%",
                 height : "61%",
                 opacity : 1
             });
+            $("#contents .hor").stop().animate({
+                marginLeft : cntMarginL,
+                marginTop : "0px"
+            });
+
             $(".m-close-btn").css("display","none");
             $project.find(".project1").css("display","table-cell");
-            console.log("gg");
+            console.log(cntMarginL, cntMarginH);
         }
-        else if ( $body.hasClass("mobile") && $contents.hasClass("active")) { // contents Mobile화면
-            $("#contents .hor, .deco-line").stop().animate({
-                marginLeft : "0px",
-                marginTop : cntMarginH
-            });
+        else if ($body.hasClass("mobile") && ($contents.hasClass("active"))) { // contents Mobile화면
+            cntMarginH = $(".hor").attr("data-cntmargintop");
             $contents.find(".hor > div:odd").css("textAlign","right");
             $line.eq(0).stop().animate({
+                marginLeft : "0px",
+                marginTop : cntMarginH,
                 left : "22%",
                 top : "32%",
                 height : "58%"
             });
             $line.eq(1).stop().animate({
+                marginLeft : "0px",
+                marginTop : cntMarginH,
                 left : "85%",
                 top : "91.4%",
                 height : "65%"
             });
             $line.eq(2).stop().animate({
+                marginLeft : "0px",
+                marginTop : cntMarginH,
                 left : "22%",
                 top : "168.8%",
                 height : "53%",
                 opacity : 1
             });
             $line.eq(3).stop().animate({
+                marginLeft : "0px",
+                marginTop : cntMarginH,
                 left : "85%",
                 top : "230.6%",
                 height : "48.8%",
                 opacity : 1
             });
+            $("#contents .hor").stop().animate({
+                marginLeft : "0px",
+                marginTop : cntMarginH
+            });
+
         }
 
         if((!$body.hasClass("mobile")) && ($project.hasClass("active"))) { // project PC
@@ -205,6 +224,19 @@ $(document).ready(function () {
             });
 
         }
+        if((!$body.hasClass("mobile")) && ($aboutMe.hasClass("active"))) { // aboutMe PC
+
+        }
+        else if(($body.hasClass("mobile")) && ($aboutMe.hasClass("active"))) { // aboutMe Mobile
+            
+        }
+        if(($aboutMe.hasClass("active")) && (winWidth <= 760)) {
+            $aboutMe.find(".about ul li").css("color", "var(--mainColor)");
+        }
+        else if(($aboutMe.hasClass("active")) && (winWidth >= 761)) {
+            $aboutMe.find(".about ul li").css("color", "#ffffff");
+        }
+        
     });
     $(window).trigger("resize");
     
@@ -519,6 +551,7 @@ $(document).ready(function () {
                 break;
             }
             case 3 : {
+                swiperActive();
                 if(!$body.hasClass("mobile")) {
                     $line.eq(0).stop().animate({
                         left : "0%",
@@ -565,33 +598,43 @@ $(document).ready(function () {
                     tabActive($("#tabpanel1"));
                 }
                 break;
-                swiperActive()
             }
             case 4 : {
-                $line.eq(0).stop().animate({
-                    left : "24.3%",
-                    top : "24%",
-                    height : "480px"
-                });
-                $line.eq(1).stop().animate({
-                    left : "53.9%",
-                    top : "10%",
-                    height : "720px"
-                });
-                $line.eq(2).stop().animate({
-                    left : "83.4%",
-                    top : "24%",
-                    height : "480px"
-                });
-                $line.eq(3).css("opacity", "0");
-                $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"},function() {
-                    $line.css("height","0px");
-                });
+                if(!$body.hasClass("mobile")) {
+                    $line.eq(0).stop().animate({
+                        left : "24.3%",
+                        top : "24%",
+                        height : "51.2%"
+                    });
+                    $line.eq(1).stop().animate({
+                        left : "53.9%",
+                        top : "10%",
+                        height : "76.8%"
+                    });
+                    $line.eq(2).stop().animate({
+                        left : "83.4%",
+                        top : "24%",
+                        height : "51.2%"
+                    });
+                    $line.eq(3).css("opacity", "0");
+                    $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"},function() {
+                        $line.css("height","0px");
+                    });    
+                }
+                else {
+
+                }
                 break;
             }
         }
         $("#cnt-wrap article").stop().fadeOut();
         target.addClass("active").stop().fadeIn().siblings().removeClass("active");
+        if(!$contents.hasClass("active")) {
+            $line.css({
+                marginLeft : "0%",
+                marginTop : "0%"
+            });
+        }
     });
 
     // intro wheel event
@@ -638,7 +681,7 @@ $(document).ready(function () {
                 var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
                 if (delta < 0) {
                         $intro.removeClass("active").stop().fadeOut();
-                        $contents.find(".hor > div:odd").css("textAlign","right");
+                        $contents.find(".hor > div:odd").css({textAlign : "right", marginTop : "0px"});
                         $line.eq(0).stop().animate({
                             marginTop : "0px",
                             left : "22%",
@@ -730,24 +773,14 @@ $(document).ready(function () {
                 }
                 else if(delta < 0) { // 휠내릴때
                     contentsWidth = $("#contents .hor").outerWidth();
-                    $(".scroll-fill").stop().animate({
-                        width : -scrollX/($(document).width() - (winWidth*0.5))*100
-                    },function() {
-                        console.log(fillWidth,scrollX,($(document).width() - (winWidth*0.5)));
-                        if(-scrollX >= ($(document).width() - (winWidth*0.5))*100) {
-                            alert();
-                            $(".scroll-fill").stop().animate({
-                                width : "100%"
-                            });
-                        }
-                    });
                     $("#contents .hor, .deco-line").stop().animate({marginLeft : scrollX-=120},50,"easeOutCubic",function() {
                         cntMarginL = scrollX;
                         $("#contents .hor").attr("data-cntmargin",cntMarginL);
-                        if(scrollX <= ($(document).width() - (winWidth*0.5))*-1) {
+                        if(scrollX <= ($(document).width() - (winWidth*0.5))*-1) { // 가로스크롤 기준점 도달
                             $(this).stop().animate({marginLeft : ($(document).width() - (winWidth*0.5))*-1});
                             $contents.find(".next-txt").addClass("active");
-                            if(scrollX <= ($(document).width() - (winWidth*0.5))*-1 && ($contents.find(".next-txt").hasClass("active"))) {
+                            $(".scroll-fill").stop().animate({width : "100%"});
+                            if(scrollX <= ($(document).width() - (winWidth*0.5))*-1 && ($contents.find(".next-txt").hasClass("active"))) { // 안내문구 active 상태에서 휠 한번더 내릴때
                                 $(this).on("mousewheel DOMMouseScroll", function(evt) {
                                     var deltas = evt.originalEvent.wheelDelta || evt.originalEvent.detail * -1;
                                     if(deltas < 0 && $contents.find(".next-txt").hasClass("active")) {
@@ -786,6 +819,16 @@ $(document).ready(function () {
                             setTimeout(function() {
                                 $contents.find(".next-txt").removeClass("active");
                             },3000)    
+                        }
+                    });
+                    $(".scroll-fill").stop().animate({
+                        width : -scrollX/($(document).width() - (winWidth*0.5))*100+"%"
+                    },function() {
+                        console.log(scrollX,($(document).width() - (winWidth*0.5)));
+                        if(-scrollX >= ($(document).width() - (winWidth*0.5))*100) {
+                            $(".scroll-fill").stop().animate({
+                                width : "100%"
+                            });
                         }
                     });
                 }
@@ -833,13 +876,14 @@ $(document).ready(function () {
                 }
                 else if(delta < 0) { // 휠내릴때
                     contentsHeight = $("#contents .hor").outerHeight();
-                    console.log($(document).height(),contentsHeight);
+                    console.log($(document).height(),scrollY, ($(document).height() + ($(window).outerHeight()* 0.8))*-1);
                     $("#contents .hor, .deco-line").stop().animate({marginTop : scrollY-=120},50,"easeOutCubic",function() {
                         cntMarginH = scrollY;
                         $("#contents .hor").attr("data-cntmargintop",cntMarginH);
-                        if(scrollY <= ($(document).height() + ($(".cnt-about").outerHeight()* 0.5))*-1) {
-                            $(this).stop().animate({marginTop : ($(document).height() + ($(".cnt-about").outerHeight()* 0.5))*-1});
-                            if(scrollY <= ($(document).height() + ($(".cnt-about").outerHeight()* 0.5))*-1) {
+                        if(scrollY <= ($(document).height() + ($(window).outerHeight()* 0.8))*-1) {
+                            $(this).stop().animate({marginTop : ($(document).height() + ($(window).outerHeight()* 0.8))*-1});
+                            if(scrollY <= ($(document).height() + ($(window).outerHeight()* 0.8))*-1) {
+                                $contents.find(".next-txt").addClass("active");
                                 $(this).on("mousewheel DOMMouseScroll", function(evt) {
                                     var deltas = evt.originalEvent.wheelDelta || evt.originalEvent.detail * -1;
                                     if(deltas < 0 && $contents.find(".next-txt").hasClass("active")) {
@@ -847,29 +891,27 @@ $(document).ready(function () {
                                         $contents.removeClass("active").stop().fadeOut();
                                         $line.eq(0).stop().animate({
                                             marginLeft : "0px",
-                                            marginHeight : "0px",
-                                            left : "50%",
-                                            top : "0px",
-                                            height : "100%"
+                                            marginTop : "0px",
+                                            left : "19.3%",
+                                            top : "23%",
+                                            height : "49.5%"
                                         })
                                         $line.eq(1).stop().animate({
                                             marginLeft : "0px",
-                                            marginHeight : "0px",
-                                            left : "75%",
-                                            top : "10%",
-                                            height : "90%"
+                                            marginTop : "0px",
+                                            left : "84%",
+                                            top : "23%",
+                                            height : "49.5%"
                                         })
                                         $line.eq(2).stop().animate({
+                                            opacity : "0",
                                             marginLeft : "0px",
-                                            marginHeight : "0px",
-                                            left : "99.9%",
-                                            top : "0px",
-                                            height : "100%"
+                                            marginTop : "0px"
                                         })
                                         $line.eq(3).css({
+                                            opacity : "0",
                                             marginLeft : "0px",
-                                            marginHeight : "0px",
-                                            opacity : 0
+                                            marginTop : "0px"
                                         });
                                         $project.addClass("active").stop().delay(800).fadeIn();
                                         $indicator.eq(2).addClass("active").siblings().removeClass("active");
@@ -877,7 +919,7 @@ $(document).ready(function () {
                                 })
                             }
                             setTimeout(function() {
-                                scrollY = ($(document).height() + ($(".cnt-about").outerHeight()* 0.5))*-1;
+                                scrollY = ($(document).height() + ($(window).outerHeight()* 0.8))*-1;
                             },50);
                         }
                     });
@@ -898,30 +940,34 @@ $(document).ready(function () {
                 if(delta > 0) {
                     $project.removeClass("active").stop().fadeOut();
                     $line.eq(0).stop().animate({
+                        marginLeft : cntMarginL,
+                        marginTop : "0px",
                         left : "24%",
-                        top : "300px",
-                        height : "520px",
-                        marginLeft : "-960px"
+                        top : "32%",
+                        height : "55.45%"
                     });
                     $line.eq(1).stop().animate({
+                        marginLeft : cntMarginL,
+                        marginTop : "0px",
                         left : "53.5%",
-                        top : "191px",
-                        height : "620px",
-                        marginLeft : "-960px"
+                        top : "20.4%",
+                        height : "66.3%"
                     });
                     $line.eq(2).stop().animate({
+                        marginLeft : cntMarginL,
+                        marginTop : "0px",
                         left : "85%",
-                        top : "270px",
-                        height : "510px",
-                        opacity : 1,
-                        marginLeft : "-960px"
+                        top : "28.8%",
+                        height : "54.5%",
+                        opacity : 1
                     });
                     $line.eq(3).stop().animate({
+                        marginLeft : cntMarginL,
+                        marginTop : "0px",
                         left : "122%",
-                        top : "240px",
-                        height : "570px",
-                        opacity : 1,
-                        marginLeft : "-960px"
+                        top : "25.6%",
+                        height : "61%",
+                        opacity : 1
                     }, function() {
                         $contents.addClass("active").stop().delay(800).fadeIn();
                         $indicator.eq(1).addClass("active").siblings().removeClass("active");
@@ -958,26 +1004,73 @@ $(document).ready(function () {
             });
         }
         else { // Mobile
-            $project.removeClass("active").stop().fadeOut();
-            $indicator.eq(3).addClass("active").siblings().removeClass("active");
-            $line.eq(0).stop().animate({
-                left : "0%",
-                top : "0%",
-                height : "100%"
-            });
-            $line.eq(1).stop().animate({
-                left : "50%",
-                top : "0%",
-                height : "100%"
-            });
-            $line.eq(2).stop().animate({
-                left : "100%",
-                top : "0%",
-                height : "100%",
-                opacity : 1
-            }, function() {
-                $webAcce.addClass("active").stop().delay(800).fadeIn();
-                $(window).trigger("resize");
+            projectTimer = setTimeout(function() {
+                if($project.is(":animated")) return false;
+                var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
+                if(delta > 0) {
+                    $project.removeClass("active").stop().fadeOut();
+                    $line.eq(0).stop().animate({
+                        marginLeft : "0px",
+                        marginTop : cntMarginH,
+                        left : "22%",
+                        top : "32%",
+                        height : "58%"
+                    });
+                    $line.eq(1).stop().animate({
+                        marginLeft : "0px",
+                        marginTop : cntMarginH,
+                        left : "85%",
+                        top : "91.4%",
+                        height : "65%"
+                    });
+                    $line.eq(2).stop().animate({
+                        marginLeft : "0px",
+                        marginTop : cntMarginH,
+                        left : "22%",
+                        top : "168.8%",
+                        height : "53%",
+                        opacity : 1
+                    });
+                    $line.eq(3).stop().animate({
+                        marginLeft : "0px",
+                        marginTop : cntMarginH,
+                        left : "85%",
+                        top : "230.6%",
+                        height : "48.8%",
+                        opacity : 1
+                    }, function() {
+                        $contents.addClass("active").stop().delay(800).fadeIn();
+                        $indicator.eq(1).addClass("active").siblings().removeClass("active");
+                    });
+
+                }
+                else if(delta < 0) {
+                    $project.removeClass("active").stop().fadeOut();
+                    $line.eq(0).stop().animate({
+                        left : "0%",
+                        top : "0%",
+                        height : "100%"
+                    });
+                    $line.eq(1).stop().animate({
+                        left : "99.5%",
+                        top : "0%",
+                        height : "100%"
+                    });
+                    $line.eq(2).stop().animate({
+                        left : "100%",
+                        top : "0%",
+                        height : "100%",
+                        opacity : 0
+                    }, function() {
+                        $webAcce.addClass("active").stop().delay(800).fadeIn();
+                        $(window).trigger("resize");
+                    });
+                    $indicator.eq(3).addClass("active").siblings().removeClass("active");
+                    $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
+                    $('.tab:first-of-type').attr('aria-selected', true);
+                    $('.tabpanel:first-of-type').attr('aria-hidden', false);
+                    tabActive($("#tabpanel1"));   
+                }
             });
 
         }
@@ -1049,6 +1142,9 @@ $(document).ready(function () {
         $(".project-modal-area").css("zIndex","1");
         $line.css("zIndex","500");
     })
+    $(document).on("click", "#dim", function() {
+        $(".m-close-btn").click();
+    })
 
     // webAcce wheel event
     $webAcce.on("mousewheel DOMMouseScroll", function(e) {
@@ -1087,17 +1183,17 @@ $(document).ready(function () {
                     $line.eq(0).stop().animate({
                         left : "24.3%",
                         top : "24%",
-                        height : "480px"
+                        height : "51.2%"
                     });
                     $line.eq(1).stop().animate({
                         left : "53.9%",
                         top : "10%",
-                        height : "720px"
+                        height : "76.8%"
                     });
                     $line.eq(2).stop().animate({
                         left : "83.4%",
                         top : "24%",
-                        height : "480px"
+                        height : "51.2%"
                     }, function() {
                         $aboutMe.addClass("active").stop().delay(800).fadeIn();
                         $aboutMe.css("zIndex","501");
@@ -1109,7 +1205,66 @@ $(document).ready(function () {
                 }
             });
         }
-    })
+        else {
+            webAcceTimer = setTimeout(function () {
+                if($webAcce.is(":animated")) return false;
+                var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
+                if(delta > 0) {
+                    $webAcce.removeClass("active").stop().fadeOut();
+                    $line.eq(0).stop().animate({
+                        marginLeft : "0px",
+                        left : "19.3%",
+                        top : "23%",
+                        height : "49.5%"
+                    })
+                    $line.eq(1).stop().animate({
+                        marginLeft : "0px",
+                        left : "84%",
+                        top : "23%",
+                        height : "49.5%"
+                    })
+                    $line.eq(2).stop().animate({
+                        opacity : "0",
+                        marginLeft : "0px"
+                    })
+                    $line.eq(3).css({
+                        opacity : "0",
+                        marginLeft : "0px"
+                    });
+                    $project.addClass("active").stop().delay(800).fadeIn();
+                    $indicator.eq(2).addClass("active").siblings().removeClass("active");
+
+                }
+                else if(delta < 0) {
+                    $webAcce.removeClass("active").stop().fadeOut();
+                    $line.eq(0).stop().animate({
+                        left : "24.3%",
+                        top : "24%",
+                        height : "51.2%"
+                    });
+                    $line.eq(1).stop().animate({
+                        left : "53.9%",
+                        top : "10%",
+                        height : "76.8%"
+                    });
+                    $line.eq(2).stop().animate({
+                        left : "83.4%",
+                        top : "24%",
+                        height : "51.2%"
+                    }, function() {
+                        $aboutMe.addClass("active").stop().delay(800).fadeIn();
+                        $aboutMe.css("zIndex","501");
+                        $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"},function() {
+                            $line.css("height","0px");
+                        });
+                    });
+                    $indicator.eq(4).addClass("active").siblings().removeClass("active");
+                }
+            });
+
+        }
+            
+    });
 
     // webAcce btn click event
     $tabBtn.on("click", function() {
@@ -1228,5 +1383,52 @@ $(document).ready(function () {
                 }
             },50);
         }
+        else {
+            aboutMeTimer = setTimeout(function() {
+                if($aboutMe.is(":animated")) return false;
+                var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
+                if(delta > 0) {
+                    $aboutMe.removeClass("active").stop().fadeOut();
+                    $line.eq(0).stop().animate({
+                        left : "0%",
+                        top : "0%",
+                        height : "100%"
+                    });
+                    $line.eq(1).stop().animate({
+                        left : "99.5%",
+                        top : "0%",
+                        height : "100%"
+                    });
+                    $line.eq(2).stop().animate({
+                        left : "100%",
+                        top : "0%",
+                        height : "100%",
+                        opacity : 0
+                    });
+                    $webAcce.addClass("active").stop().delay(800).fadeIn();
+                    $indicator.eq(3).addClass("active").siblings().removeClass("active");        
+                }
+            },50);
+
+        }
+    });
+    // aboutMe .skills-view click event
+    $aboutMe.find(".skills-view").on("click", function(e) {
+        e.preventDefault();
+        if(!$body.hasClass("mobile")) {
+            $("#modal-mobile").addClass("active");
+            $("#about-modal").addClass("active");
+            $(".about-modal-close-btn").addClass("active");
+        }
+        else {
+            $("#modal-mobile").addClass("active");
+            $("#about-modal").addClass("active");
+            $(".about-modal-close-btn").addClass("active");
+        }
+    });
+    $aboutMe.find(".about-modal-close-btn").on("click", function() {
+        $("#modal-mobile").removeClass("active");
+        $("#about-modal").removeClass("active");
+        $(".about-modal-close-btn").removeClass("active");
     });
 });

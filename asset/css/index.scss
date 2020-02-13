@@ -456,9 +456,10 @@ h3 {
         position : fixed;
         left : calc(50% - 50px);
         bottom : 50px;
-        width : 100px;
+        width : 102px;
         height : 5px;
         border : 1px solid var(--mainColor);
+        overflow : hidden;
         .scroll-fill {
             @include transition(width 0.6s);
             display : block;
@@ -472,10 +473,13 @@ h3 {
         width : 150%;
         height : 100%;
         > div {
+            @include transition(all 0.5s);
             position : absolute;
             ul {
+                @include transition(all 0.5s);
                 color : $black;
                 li {
+                    @include transition(all 0.5s);
                     padding-bottom : 25px;
                     &:last-child {
                         padding-bottom : 0px;
@@ -769,39 +773,95 @@ h3 {
 #aboutMe {
     display : none;
     position : relative;
-        svg {
-            display : block;
-            width : 100%;
-            height : 100%;
-            .forward {
-                @include animation(forwardAni 1.2s 0.4s linear 1 forwards);
-                fill : none;
-                stroke : var(--mainColor);
-                stroke-width : 3px;
-                stroke-dasharray : 1640.58056640625;
-                stroke-dashoffset : 1640.58056640625;
-            }
-            .forward2 {
-                @include animation(reverseAni 1.2s 0.4s linear 1 forwards);
-                fill : none;
-                stroke : var(--mainColor);
-                stroke-width : 3px;
-                stroke-dasharray : 1638.235107421875;
-                stroke-dashoffset : 1638.235107421875;
+    svg {
+        @include transition(all 0.5s);
+        position : absolute;
+        left : 0%;
+        top : 0%;
+        &#modal-mobile {
+            display : none;
+            &.active {
+                display : block;
+                z-index : 1;
             }
         }
+        .st0 {
+            @include animation(forwardAni 1.2s 0.4s linear 1 forwards);
+            fill : none;
+            stroke : var(--mainColor);
+            stroke-width : 3px;
+            stroke-dasharray : 2360.680908203125;
+            stroke-dashoffset : 2360.680908203125;
+
+        }
+        .st1 {
+            @include animation(reverseAni 1.2s 0.4s linear 1 forwards);
+            fill : none;
+            stroke : var(--mainColor);
+            stroke-width : 3px;
+            stroke-dasharray : 2355.789794921875;
+            stroke-dashoffset : 2355.789794921875;
+        }
+        line.modal-pc-st2 {
+            @include animation(pcLineAni 1.2s 0.4s linear 1 both);
+            fill : $black;
+            stroke : #fff;
+            stroke-width : 3px;
+            stroke-dasharray : 559.319091796875;
+            stroke-dashoffset : 559.319091796875;
+        }
+        line.modal-pc-st3 {
+            @include animation(pcLineAni 1.5s 0.4s linear 1 both);
+            stroke : #fff;
+            stroke-width : 3px;
+            stroke-dasharray : 559.319091796875;
+            stroke-dashoffset : 559.319091796875;
+        }
+        line.modal-pc-st4 {
+            @include animation(pcLineAni 1.2s 0.4s linear 1 both);
+            stroke : #fff;
+            stroke-width : 3px;
+            stroke-dasharray : 559.319091796875;
+            stroke-dashoffset : 559.319091796875;
+        }
+        line.modal-pc-st5 {
+            @include animation(pcLineAni 1.2s 0.4s linear 1 both);
+            stroke : #fff;
+            stroke-width : 3px;
+            stroke-dasharray : 559.319091796875;
+            stroke-dashoffset : 559.319091796875;
+        }
+        line.modal-pc-st6 {
+            @include animation(pcLineAni 1.5s 0.4s linear 1 both);
+            stroke : #fff;
+            stroke-width : 3px;
+            stroke-dasharray : 559.319091796875;
+            stroke-dashoffset : 559.319091796875;
+        }
+        line.modal-pc-st7 {
+            @include animation(pcLineAni 1.2s 0.4s linear 1 both);
+            stroke : #fff;
+            stroke-width : 3px;
+            stroke-dasharray : 559.319091796875;
+            stroke-dashoffset : 559.319091796875;
+        }
+    }
     
-    div {
+    .about {
+        @include transition(all 0.7s);
         position : absolute;
-        left : calc(50% - 400px);
-        top : calc(50% - 140px);
+        left : 32%;
+        top : 32%;
         ul {
             text-align : center;
             li {
-                @include transition(color 1.2s);
+                @include transition(all 0.5s);
                 color : var(--mainColor);
                 width : 800px;
                 height : 70px;
+                &.return-color {
+                    color : var(--mainColor);
+                }
                 strong,span {
                     float : left;
                     line-height : 70px;
@@ -818,10 +878,207 @@ h3 {
                 &:first-child span {
                     line-height : 1.5;
                 }
+                .skills-view {
+                    display : block;
+                }
             }
         }
-    
     }
+    .detail-skills {
+        @include transform(scale(0));
+        @include transition(all 0.7s);
+        position : absolute;
+        left : 0px;
+        top : 0px;
+        width : 100%;
+        height : 100%;
+        background : rgba(0,0,0,0.7);
+        &.active {
+            @include transform(scale(1));
+        }
+        ul {
+            @include transition(opacity 0.5s);
+            opacity : 1;
+            height : 100%;
+            font-size : 20px;
+            li {
+                @include transition(all 0.7s);
+                position : absolute;
+            }
+            .exp95 {
+                left : 50%;
+                top : 6%;
+                &:after {
+                    content : "95%";
+                    position : absolute;
+                    left : 35%;
+                    top : 240%;
+                    display : block;
+                    width : 40px;
+                }
+            }
+            .exp90 {
+                left : 20%;
+                top : 77%;
+                &:after {
+                    content : "90%";
+                    position : absolute;
+                    left : 73%;
+                    top : -250%;
+                    display : block;
+                    width : 40px;
+                }
+            }
+            .exp85 {
+                left : 20%;
+                top : 21%;
+                &:after {
+                    content : "85%";
+                    position : absolute;
+                    left: 280%;
+                    top: 200%;
+                    display : block;
+                    width : 40px;
+                }
+            }
+            .exp80 {
+                left : 49%;
+                top : 88%;
+                &:after {
+                    content : "80%";
+                    position : absolute;
+                    left : 35%;
+                    top : -370%;
+                    display : block;
+                    width : 40px;
+                }
+            }
+            .exp75 {
+                left : 80%;
+                top : 18%;
+                &:after {
+                    content : "75%";
+                    position : absolute;
+                    left: -83%;
+                    top: 350%;
+                    display : block;
+                    width : 40px;
+                }
+            }
+            .exp70 {
+                left : 81%;
+                top : 78%;
+                &:after {
+                    content : "70%";
+                    position : absolute;
+                    left : -70%;
+                    top : -520%;
+                    display : block;
+                    width : 40px;
+                }
+            }
+        }
+        .fill-wrap {
+            @include transition(all 0.5s);
+            display : block;
+            opacity : 0;
+            position : absolute;
+            left : 10%;
+            top : 10%;
+            width : 0%;
+            height : 0%;
+            border-left : 2px solid var(--mainColor);
+            > div {
+                @include transition(all 0.5s);
+                position : absolute;
+                display : block;
+                left : 0%;
+                width : 0%;
+                height : 0%;
+                background : #fff;
+                &:before, &:after {
+                    @include transition(all 0.5s);
+                    content : "";
+                    position : absolute;
+                    display : block;
+                    left : 0px;
+                    top : 0px;
+                    opacity : 0;
+                    width : 0px;
+                    height : 0px;
+                    background : var(--mainColor);
+                }
+            }
+            .fill-width-95 {
+                top : 5%;
+                &:after {
+                    content : "95%";
+                }
+            }
+            .fill-width-90 {
+                top : 20%;
+                &:after {
+                    content : "90%";
+                }
+            }
+            .fill-width-85 {
+                top : 35%;
+                &:after {
+                    content : "85%";
+                }
+            }
+            .fill-width-80 {
+                top : 50%;
+                &:after {
+                    content : "80%";
+                }
+            }
+            .fill-width-75 {
+                top : 65%;
+                &:after {
+                    content : "75%";
+                }
+            }
+            .fill-width-70 {
+                top : 80%;
+                &:after {
+                    content : "70%";
+                }
+            }
+        }
+    }
+    .about-modal-close-btn {
+        @include transform(translateX(60px));
+        @include transition(all 0.5s);
+        position : fixed;
+        z-index : 1;
+        opacity : 0;
+        right : 0px;
+        top : 0px;
+        width : 50px;
+        height : 40px;
+        &.active {
+            @include transform(translateX(0px));
+            opacity : 1;
+            width : 50px;
+            height : 40px;
+        }
+        span {
+            position : absolute;
+            left : 10px;
+            top : 20px;
+            width : 30px;
+            height : 3px;
+            background : var(--mainColor);
+        }
+        span:nth-child(1) {
+            @include transform(rotate(45deg));
+        }
+        span:nth-child(2) {
+            @include transform(rotate(315deg));
+        }
+    }
+
 }
 
 
@@ -846,7 +1103,7 @@ h3 {
 }
 @include keyframes(forwardAni) {
     0% {
-        stroke-dashoffset : 1640.58056640625;
+        stroke-dashoffset : 2360.680908203125;
     }
     80% {
         stroke-dashoffset : 0;
@@ -859,7 +1116,7 @@ h3 {
 }
 @include keyframes(reverseAni) {
     0% {
-        stroke-dashoffset : 1638.235107421875;
+        stroke-dashoffset : 2355.789794921875;
     }
     80% {
         stroke-dashoffset : 0;
@@ -870,7 +1127,335 @@ h3 {
         // opacity : 0.9;
     }
 }
+@include keyframes(pcLineAni) {
+    0% {
+        stroke-dashoffset : 559.319091796875;
+    }
+    100% {
+        stroke-dashoffset : 0;
+    }
 
+}
+
+@media all and (max-width : 1850px) {
+    #aboutMe {
+        svg {
+            top : 1%;
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    top : 7%;
+                    &:after {
+                        left : 35%;
+                        top : 240%;
+                    }
+                }
+                .exp90 {
+                    top : 76%;
+                }
+                .exp80 {
+                    top : 86%;
+                }
+                .exp70 {
+                    left : 79%;
+                    top : 76%;
+                    &:after {
+                        left : -55%;
+                        top : -490%;
+                    }
+                }    
+            }
+        }
+    }
+}
+@media all and (max-width : 1750px) {
+    #aboutMe {
+        svg {
+            top : 2%;
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    top : 7%;
+                }
+                .exp90 {
+                    top : 73%;
+                    &:after {
+                        left : 73%;
+                        top : -250%;
+                    }
+                }
+                .exp85 {
+                    left : 21%;
+                    &:after {
+                        left: 230%;
+                        top: 200%;
+                    }
+                }
+                .exp80 {
+                    top : 83%;
+                }
+                .exp75 {
+                    left : 77%;
+                    top : 21%;
+                    &:after {
+                        left: -45%;
+                        top: 270%;
+                    }
+                }
+                .exp70 {
+                    left : 74%;
+                    top : 68%;
+                    &:after {
+                        left : -10%;
+                        top : -300%;
+                    }
+                }
+    
+            }
+        }
+    
+    }
+}
+@media all and (max-width : 1650px) {
+    #aboutMe {
+        svg {
+            top : 3%;
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    top : 8%;
+                }
+                .exp90 {
+                    top : 70%;
+                }
+                .exp80 {
+                    top : 77%;
+                    &:after {
+                        left: 30%;
+                        top: -290%;
+                    }
+                }
+                .exp75 {
+                    top : 22%;
+                    &:after {
+                        left: -45%;
+                        top: 210%;
+                    }
+                }
+                .exp70 {
+                    left : 73%;
+                    top : 64%;
+                    &:after {
+                        left : -3%;
+                        top : -250%;
+                    }
+                }
+    
+            }
+        }
+    }
+}
+@media all and (max-width : 1550px) {
+    #aboutMe {
+        svg {
+            top : 4%;
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    left : 49%;
+                    top : 8.5%;
+                }
+                .exp90 {
+                    top : 67%;
+                    &:after {
+                        left: 69%;
+                    }
+                }
+                .exp85 {
+                    left : 22%;
+                    &:after {
+                        left: 180%;
+                        top: 190%
+                    }
+                }
+                .exp80 {
+                    left : 48%;
+                    top : 73%;
+                    &:after {
+                        left: 32%;
+                        top: -250%;
+                    }
+                }
+                .exp75 {
+                    top : 22%;
+                    &:after {
+                        left: -45%;
+                        top: 200%;
+                    }
+                }
+                .exp70 {
+                    left : 73%;
+                    top : 62%;
+                    &:after {
+                        left : -2%;
+                        top : -255%;
+                    }
+                }
+    
+            }
+        }
+    }
+}
+@media all and (max-width : 1480px) {
+    #aboutMe {
+        .about {
+            left : 28%;
+            top : 24%;
+            ul {
+                li {
+                    width : 800px;
+                    strong {
+                        font-size: 28px;
+                        width: 160px;
+                    }
+                    span {
+                        font-size : 20px;
+                    }
+                }
+            }
+        
+        }
+        svg {
+            top : 5%;
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    top : 9%;
+                    &:after {
+                        top : 230%;
+                    }
+                }
+                .exp90 {
+                    top : 65%;
+                    &:after {
+                        left: 62%;
+                        top: -240%;
+                    }
+                }
+                .exp85 {
+                    left : 22%;
+                    &:after {
+                        left: 170%;
+                        top: 180%;
+                    }
+                }
+                .exp80 {
+                    left : 48%;
+                    top : 71%;
+                    &:after {
+                        left: 32%;
+                        top: -240%;
+                    }
+                }
+                .exp75 {
+                    top : 22%;
+                    &:after {
+                        left: -45%;
+                        top: 190%;
+                    }
+                }
+                .exp70 {
+                    left : 73%;
+                    top : 60.5%;
+                    &:after {
+                        left : -2%;
+                        top : -255%;
+                    }
+                }
+    
+            }
+        }
+    }
+}
+@media all and (max-width : 1380px) {
+    #aboutMe {
+        .about {
+            left : 28%;
+            top : 24%;
+            ul {
+                li {
+                    width : 800px;
+                    strong {
+                        font-size: 28px;
+                        width: 160px;
+                    }
+                    span {
+                        font-size : 20px;
+                    }
+                }
+            }
+        
+        }
+        svg {
+            top : 5%;
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    top : 9%;
+                    &:after {
+                        left : 33%;
+                        top : 220%;
+                    }
+                }
+                .exp90 {
+                    top : 61%;
+                    &:after {
+                        left : 62%;
+                        top : -240%;
+                    }
+                }
+                .exp85 {
+                    left : 21%;
+                    top : 20%;
+                    &:after {
+                        left: 180%;
+                        top: 180%;
+                    }
+                }
+                .exp80 {
+                    left : 47%;
+                    top : 66%;
+                    &:after {
+                        left : 35%;
+                        top : -230%;
+                    }
+                }
+                .exp75 {
+                    top : 20%;
+                    &:after {
+                        left: -45%;
+                        top: 190%;
+                    }
+                }
+                .exp70 {
+                    left: 72%;
+                    top: 57%;
+                    &:after {
+                        left : -2%;
+                        top : -255%;
+                    }
+                }
+    
+            }
+        }
+    }
+}
 @media all and (max-width : 1280px) {
     body {
         font-size : 16px;
@@ -900,60 +1485,132 @@ h3 {
         }
     }
     #aboutMe {
-        svg {
-            .forward {
-                @include animation(forwardAni 1.2s 0.4s linear 1 forwards);
-                fill : none;
-                stroke : var(--mainColor);
-                stroke-width : 3px;
-                stroke-dasharray : 1640.58056640625;
-                stroke-dashoffset : 1640.58056640625;
-            }
-            .forward2 {
-                @include animation(reverseAni 1.2s 0.4s linear 1 forwards);
-                fill : none;
-                stroke : var(--mainColor);
-                stroke-width : 3px;
-                stroke-dasharray : 1638.235107421875;
-                stroke-dashoffset : 1638.235107421875;
-            }
-            .path-common {
-                left : 25%;
-            }
-        }
-        div {
-            position : absolute;
-            left : calc(50% - 400px);
-            top : calc(50% - 140px);
+        .about {
+            left : 28%;
+            top : 24%;
             ul {
-                text-align : center;
                 li {
-                    @include transition(color 1.2s);
-                    color : var(--mainColor);
                     width : 800px;
-                    height : 70px;
+                    height : 55px;
                     strong,span {
-                        float : left;
-                        line-height : 70px;
+                        line-height : 55px;
                     }
                     strong {
-                        text-align : left;
-                        font-size : 30px;
-                        padding-right : 60px;
-                        width : 180px;
+                        font-size: 25px;
+                        padding-right: 60px;
+                        width: 120px;
                     }
                     span {
-                        font-size : 22px;
+                        font-size : 18px;
                     }
                     &:first-child span {
                         line-height : 1.5;
                     }
                 }
             }
+        }
+        svg {
+            top : 6%;
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    left : 48%;
+                    top : 8.5%;
+                    &:after {
+                        top : 230%;
+                    }
+                }
+                .exp90 {
+                    top : 58%;
+                    &:after {
+                        left : 60%;
+                        top : -240%;
+                    }
+                }
+                .exp85 {
+                    left : 22%;
+                    top : 20%;
+                    &:after {
+                        left: 170%;
+                        top: 170%;
+                    }
+                }
+                .exp80 {
+                    left : 47%;
+                    top : 63%;
+                    &:after {
+                        left: 32%;
+                        top: -240%;
+                    }
+                }
+                .exp75 {
+                    top : 20%;
+                    &:after {
+                        left: -45%;
+                        top: 190%;
+                    }
+                }
+                .exp70 {
+                    left : 72%;
+                    top : 55%;
+                    &:after {
+                        left : -2%;
+                        top : -255%;
+                    }
+                }
+    
+            }
+        }
+
+    }
         
+}
+@media all and (max-width : 1160px) {
+    #aboutMe {
+        .detail-skills {
+            ul {
+                .exp95 {
+                    top : 9%;
+                    &:after {
+                        top : 200%;
+                    }
+                }
+                .exp90 {
+                    left : 19%;
+                    top : 54%;
+                    &:after {
+                        left: 60%;
+                        top: -230%;
+                    }
+                }
+                .exp85 {
+                    left : 21%;
+                    top : 18%;
+                }
+                .exp80 {
+                    left : 46%;
+                    top : 57.5%;
+                    &:after {
+                        left : 33%;
+                        top : -220%;
+                    }
+                }
+                .exp75 {
+                    top : 18%;
+                }
+                .exp70 {
+                    left : 71%;
+                    top : 50%;
+                    &:after {
+                        left : 0%;
+                        top : -240%;
+                    }
+                }
+    
+            }
         }
     }
-    
 }
 @media all and (max-width : 1024px) {
     body {
@@ -981,7 +1638,157 @@ h3 {
             font-size : 40px;
         }
     }
+    #aboutMe {
+        svg {
+            left : -10%;
+            top : 10%;
+        }
+        .about {
+            left : 22.5%;
+            top : 27%;
+            ul {
+                li {
+                    width : 600px;
+                    height : 55px;
+                    strong {
+                        font-size: 25px;
+                        width: 120px;
+                    }
+                    span {
+                        font-size : 18px;
+                    }
+                }
+            }
+        
+        }
+        .detail-skills {
+            margin-top : 10%;
+            height : 80%;
+            ul {
+                .exp95 {
+                    left : 42%;
+                    top : 2%;
+                    &:after {
+                        top : 230%;
+                    }
+                }
+                .exp90 {
+                    left : 11%;
+                    top : 57%;
+                    &:after {
+                        left : 60%;
+                        top : -240%;
+                    }
+                }
+                .exp85 {
+                    left : 13%;
+                    top : 13%;
+                    &:after {
+                        left: 170%;
+                        top: 170%;
+                    }
+                }
+                .exp80 {
+                    left : 40%;
+                    top : 61%;
+                    &:after {
+                        left : 34%;
+                        top : -208%;
+                    }
+                }
+                .exp75 {
+                    left : 73%;
+                    top : 13%;
+                    &:after {
+                        left : -30%;
+                        top : 190%;
+                    }
+                }
+                .exp70 {
+                    left : 69%;
+                    top : 53%;
+                    &:after {
+                        left : -2%;
+                        top : -255%;
+                    }
+                }
+    
+            }
+        }
+        .about-modal-close-btn {
+            top : 11%;
+        }
+    }
+
 }
+@media all and (max-width : 920px) {
+    #aboutMe {
+        .about {
+            left : 25%;
+            top : 26%;
+            ul {
+                li {
+                    width : 550px;
+                    strong {
+                        font-size : 22px;
+                        width : 110px;
+                        padding-right : 40px;
+                    }
+                    span {
+                        font-size : 16px;
+                    }
+                }
+            }
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    &:after {
+                        top : 200%;
+                    }
+                }
+                .exp90 {
+                    left : 9%;
+                    top : 52%;
+                    &:after {
+                        top : -210%;
+                    }
+                }
+                .exp85 {
+                    left : 12%;
+                    top : 12%;
+                }
+                .exp80 {
+                    left : 39%;
+                    top : 56%;
+                    &:after {
+                        left : 35%;
+                        top : -200%;
+                    }
+                }
+                .exp75 {
+                    left: 72.5%;
+                    top: 12%;
+                    &:after {
+                        left : -25%;
+                    }
+                }
+                .exp70 {
+                    left : 68%;
+                    top : 48%;
+                    &:after {
+                        left : -1%;
+                        top : -225%;
+                    }
+                }
+    
+            }
+        }
+
+    }
+
+}
+
 @media all and (max-width : 760px) {
     body {
         font-size : 13px;
@@ -1037,7 +1844,7 @@ h3 {
                 top : 39.4%;
             }
             .cnt-about {
-                left : 79.03%;
+                left : 83.03%;
                 top : 32.1%;
             }
             .cnt-skills, .cnt-about {
@@ -1050,6 +1857,11 @@ h3 {
         }
     }
     #project {
+        .project-txt-area {
+            a.detail {
+                margin-left : 4em;
+            }
+        }
         .project-modal-area .modal-btn p {
             font-size : 18px;
         }
@@ -1144,13 +1956,206 @@ h3 {
             }
         }
     }
+    #aboutMe {
+        svg {
+            display : none;
+            &#modal-mobile {
+                display : none;
+                &.active {
+                    display : none;
+                    z-index : 1;
+                }
+            }                
+        }
+        .about {
+            left : 22.5%;
+            top : 29%;
+            ul {
+                li {
+                    width : 500px;
+                    height : 42px;
+                    strong,span {
+                        line-height : 42px;
+                    }
+                    strong {
+                        font-size: 20px;
+                        width: 80px;
+                    }
+                    span {
+                        font-size : 14px;
+                    }
+                }
+            }
+        
+        }
+        .detail-skills {
+            ul {
+                opacity : 0;
+                .exp95 {
+                    &:after {
+                        top : 200%;
+                    }
+                }
+                .exp90 {
+                    left : 9%;
+                    top : 52%;
+                    &:after {
+                        top : -210%;
+                    }
+                }
+                .exp85 {
+                    left : 12%;
+                    top : 12%;
+                }
+                .exp80 {
+                    left : 39%;
+                    top : 56%;
+                    &:after {
+                        left : 35%;
+                        top : -200%;
+                    }
+                }
+                .exp75 {
+                    left: 72.5%;
+                    top: 12%;
+                    &:after {
+                        left : -25%;
+                    }
+                }
+                .exp70 {
+                    left : 68%;
+                    top : 48%;
+                    &:after {
+                        left : -1%;
+                        top : -225%;
+                    }
+                }
     
+            }
+            .fill-wrap {
+                opacity : 1;
+                left : 10%;
+                top : 10%;
+                width : 100%;
+                height : 80%;
+                > div {
+                    left : 0%;
+                    width : 50%;
+                    height : 20px;
+                    &:before {
+                        height : 20px;
+                        opacity : 1;
+                        text-indent: 107%;
+                        font-size : 16px;
+                        line-height: 18px;
+                    }
+                    &:after {
+                        left : 23%;
+                        top : 110%;
+                        width : 100%;
+                        height : 22px;
+                        opacity : 1;
+                        font-size : 20px;
+                        background : none;
+                        color : #fff;
+                    }
+                }
+                .fill-width-95 {
+                    &:before {
+                        content : "95%";
+                        width : 95%;
+                    }
+                    &:after {
+                        content : "HTML5 + CSS3.0";
+                    }
+                }
+                .fill-width-90 {
+                    &:before {
+                        content : "90%";
+                        width : 90%;
+                        text-indent: 113%;
+                    }
+                    &:after {
+                        content : "JavaScript, jQuery";
+                    }
+                }
+                .fill-width-85 {
+                    &:before {
+                        content : "85%";
+                        width : 85%;
+                        text-indent: 120%;
+                    }
+                    &:after {
+                        content : "SASS";
+                    }
+                }
+                .fill-width-80 {
+                    &:before {
+                        content : "80%";
+                        width : 80%;
+                        text-indent: 127%;
+                    }
+                    &:after {
+                        content : "Wordpress, Bootstrap";
+                    }
+                }
+                .fill-width-75 {
+                    &:before {
+                        content : "75%";
+                        width : 75%;
+                        text-indent: 135%;
+                    }
+                    &:after {
+                        content : "PHP + MySQL";
+                    }
+                }
+                .fill-width-70 {
+                    &:before {
+                        content : "70%";
+                        width : 70%;
+                        text-indent: 145%;
+                    }
+                    &:after {
+                        content : "PhotoShop, Illustrator";
+                    }
+                }
+            }
+        }
+
+
+    }
+
 }
 @media all and (max-width : 670px) {
     #project {
         .project-modal-area .modal-btn p {
             font-size : 15px;
         }
+    }
+    #aboutMe {
+        .about {
+            left : 14.5%;
+            top : 29%;
+            ul {
+                li {
+                    width : 500px;
+                    height : 42px;
+                    margin-bottom : 30px;
+                    strong,span {
+                        line-height : 42px;
+                    }
+                    strong {
+                        font-size: 20px;
+                        width: 80px;
+                    }
+                    span {
+                        font-size : 14px;
+                    }
+                }
+            }
+        
+        }
+
     }
 }
 
@@ -1291,6 +2296,7 @@ h3 {
         }
         .project-txt-area {
             display : table;
+            height : 60%;
             .project-common {
                 @include transition(all 0.6s);
                 position : absolute;
@@ -1302,7 +2308,6 @@ h3 {
                 padding-top : 10px;
                 padding-left : 10px;
                 padding-bottom : 0px;
-                
             }
             p {
                 margin-bottom : 50px;
@@ -1496,5 +2501,30 @@ h3 {
             }
         }
     }
-    
+    #aboutMe {
+        .about {
+            left : 9.5%;
+            top : 29%;
+            ul {
+                li {
+                    width : 500px;
+                    height : 42px;
+                    margin-bottom : 30px;
+                    strong,span {
+                        line-height : 42px;
+                    }
+                    strong {
+                        font-size: 20px;
+                        width: 80px;
+                    }
+                    span {
+                        font-size : 14px;
+                    }
+                }
+            }
+        
+        }
+
+    }
+
 }
