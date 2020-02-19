@@ -659,7 +659,6 @@ h3 {
     #webAcce .web-txt-common p + p {
       margin-top: 40px; }
   #webAcce .tabpanel {
-    opacity: 0;
     position: absolute;
     left: 0px;
     top: 0px; }
@@ -1590,6 +1589,48 @@ h3 {
       #aboutMe .about ul li strong {
         font-size: 22px;
         width: 110px;
+        padding-right: 40px; }
+      #aboutMe .about ul li span {
+        font-size: 16px; }
+  #aboutMe .detail-skills ul .exp95:after {
+    top: 200%; }
+  #aboutMe .detail-skills ul .exp90 {
+    left: 9%;
+    top: 52%; }
+    #aboutMe .detail-skills ul .exp90:after {
+      top: -210%; }
+  #aboutMe .detail-skills ul .exp85 {
+    left: 12%;
+    top: 12%; }
+  #aboutMe .detail-skills ul .exp80 {
+    left: 39%;
+    top: 56%; }
+    #aboutMe .detail-skills ul .exp80:after {
+      left: 35%;
+      top: -200%; }
+  #aboutMe .detail-skills ul .exp75 {
+    left: 72.5%;
+    top: 12%; }
+    #aboutMe .detail-skills ul .exp75:after {
+      left: -25%; }
+  #aboutMe .detail-skills ul .exp70 {
+    left: 68%;
+    top: 48%; }
+    #aboutMe .detail-skills ul .exp70:after {
+      left: -1%;
+      top: -225%; } }
+@media all and (max-width: 860px) {
+  #intro .txt-ani {
+    font-size: 33px; }
+
+  #aboutMe .about {
+    left: 22%;
+    top: 23%; }
+    #aboutMe .about ul li {
+      width: 550px; }
+      #aboutMe .about ul li strong {
+        font-size: 22px;
+        width: 90px;
         padding-right: 40px; }
       #aboutMe .about ul li span {
         font-size: 16px; }

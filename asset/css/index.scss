@@ -632,7 +632,7 @@ h3 {
         }
     }
     .tabpanel {
-        opacity : 0;
+        // display : none;
         position : absolute;
         left : 0px;
         top : 0px;
@@ -1732,6 +1732,79 @@ h3 {
                     strong {
                         font-size : 22px;
                         width : 110px;
+                        padding-right : 40px;
+                    }
+                    span {
+                        font-size : 16px;
+                    }
+                }
+            }
+        }
+        .detail-skills {
+            ul {
+                .exp95 {
+                    &:after {
+                        top : 200%;
+                    }
+                }
+                .exp90 {
+                    left : 9%;
+                    top : 52%;
+                    &:after {
+                        top : -210%;
+                    }
+                }
+                .exp85 {
+                    left : 12%;
+                    top : 12%;
+                }
+                .exp80 {
+                    left : 39%;
+                    top : 56%;
+                    &:after {
+                        left : 35%;
+                        top : -200%;
+                    }
+                }
+                .exp75 {
+                    left: 72.5%;
+                    top: 12%;
+                    &:after {
+                        left : -25%;
+                    }
+                }
+                .exp70 {
+                    left : 68%;
+                    top : 48%;
+                    &:after {
+                        left : -1%;
+                        top : -225%;
+                    }
+                }
+    
+            }
+        }
+
+    }
+
+}
+@media all and (max-width : 860px) {
+    #intro {
+        .txt-ani {
+            font-size : 33px;
+        }
+    }
+
+    #aboutMe {
+        .about {
+            left : 22%;
+            top : 23%;
+            ul {
+                li {
+                    width : 550px;
+                    strong {
+                        font-size : 22px;
+                        width : 90px;
                         padding-right : 40px;
                     }
                     span {

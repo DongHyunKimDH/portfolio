@@ -37,7 +37,14 @@ $(document).ready(function () {
     var $mainBlue = "#7ec6c5";
     var $mainRed = "#cb6586";
 
-    
+    $webAcce.css({display: 'block', position: 'absolute', top:0, left: '-100%'});
+    swiperActive();
+    setTimeout(function () {
+        $webAcce.removeAttr('style');
+        tabActive($("#tab1"));  //왜 tabActive($("#tabpanel1")); 이라고 하는 이유는 뭐죠?? => 탭클릭시 .active클래스명으로 제어하지 않고 show(), hide()로 변경합니다.
+    }, 1000);
+
+
     // intro active
     $intro.addClass("active");
     // resize width()
@@ -551,7 +558,7 @@ $(document).ready(function () {
                 break;
             }
             case 3 : {
-                swiperActive();
+                //swiperActive();
                 if(!$body.hasClass("mobile")) {
                     $line.eq(0).stop().animate({
                         left : "0%",
@@ -572,7 +579,7 @@ $(document).ready(function () {
                         $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
                         $('.tab:first-of-type').attr('aria-selected', true);
                         $('.tabpanel:first-of-type').attr('aria-hidden', false);
-                        tabActive($("#tabpanel1"));
+                        tabActive($("#tab1"));
                     });
                 }
                 else {
@@ -595,7 +602,7 @@ $(document).ready(function () {
                     $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
                     $('.tab:first-of-type').attr('aria-selected', true);
                     $('.tabpanel:first-of-type').attr('aria-hidden', false);
-                    tabActive($("#tabpanel1"));
+                    tabActive($("#tab1"));
                 }
                 break;
             }
@@ -622,7 +629,9 @@ $(document).ready(function () {
                     });    
                 }
                 else {
-
+                    $line.css("height", "0%");
+                    $aboutMe.css("zIndex","501");
+                    $aboutMe.find(".about ul li").css("color", "var(--mainColor)");
                 }
                 break;
             }
@@ -631,6 +640,10 @@ $(document).ready(function () {
         target.addClass("active").stop().fadeIn().siblings().removeClass("active");
         if(!$contents.hasClass("active")) {
             $line.css({
+                marginLeft : "0%",
+                marginTop : "0%"
+            });
+            $contents.find(".hor").css({
                 marginLeft : "0%",
                 marginTop : "0%"
             });
@@ -721,7 +734,7 @@ $(document).ready(function () {
     $contents.on("mousewheel DOMMouseScroll", function(e) {
         clearTimeout(contentsTimer);
         if(!$body.hasClass("mobile")) {
-            contentsTimer = setTimeout(function() {2
+            contentsTimer = setTimeout(function() {
                 if($contents.is(":animated")) return false;
                 var delta = e.originalEvent.wheelDelta || e.originalEvent.detail * -1;
                 if(delta > 0 && articleLength > 0) { // 휠 올릴때
@@ -999,7 +1012,7 @@ $(document).ready(function () {
                     $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
                     $('.tab:first-of-type').attr('aria-selected', true);
                     $('.tabpanel:first-of-type').attr('aria-hidden', false);
-                    tabActive($("#tabpanel1"));   
+                    tabActive($("#tab1"));   
                 }
             });
         }
@@ -1069,7 +1082,7 @@ $(document).ready(function () {
                     $('.tab:first-of-type, .tabpanel:first-of-type').addClass('active').attr('tabIndex', 0);
                     $('.tab:first-of-type').attr('aria-selected', true);
                     $('.tabpanel:first-of-type').attr('aria-hidden', false);
-                    tabActive($("#tabpanel1"));   
+                    tabActive($("#tab1"));   
                 }
             });
 
@@ -1237,27 +1250,10 @@ $(document).ready(function () {
                 }
                 else if(delta < 0) {
                     $webAcce.removeClass("active").stop().fadeOut();
-                    $line.eq(0).stop().animate({
-                        left : "24.3%",
-                        top : "24%",
-                        height : "51.2%"
-                    });
-                    $line.eq(1).stop().animate({
-                        left : "53.9%",
-                        top : "10%",
-                        height : "76.8%"
-                    });
-                    $line.eq(2).stop().animate({
-                        left : "83.4%",
-                        top : "24%",
-                        height : "51.2%"
-                    }, function() {
-                        $aboutMe.addClass("active").stop().delay(800).fadeIn();
-                        $aboutMe.css("zIndex","501");
-                        $aboutMe.find("ul li").stop().delay(2200).animate({color : "#ffffff"},function() {
-                            $line.css("height","0px");
-                        });
-                    });
+                    $line.css("height", "0%");
+                    $aboutMe.addClass("active").stop().delay(800).fadeIn();
+                    $aboutMe.css("zIndex","501");
+                    $aboutMe.find(".about ul li").css("color", "var(--mainColor)");
                     $indicator.eq(4).addClass("active").siblings().removeClass("active");
                 }
             });
@@ -1269,6 +1265,7 @@ $(document).ready(function () {
     // webAcce btn click event
     $tabBtn.on("click", function() {
         var $target = $(this);
+        $(window).trigger("resize");
         tabActive($target);
     });
 
@@ -1321,14 +1318,16 @@ $(document).ready(function () {
     // webAcce btn Active
     function tabActive($target) {
         if(!$body.hasClass("mobile")) {
+            
             $target.addClass("active").attr({"tabIndex" : 0, "aria-selected" : "true"}).siblings().removeClass("active").attr({"tabIndex" : -1, "aria-selected" : "false"});
-            $("#"+$target.attr("aria-controls")).addClass("active").attr({"tabIndex" : 0, "aria-hidden" : "false"}).siblings(".tabpanel").removeClass("active").attr({"tabIndex" : -1, "aria-hidden" : "true"});
+            $("#"+$target.attr("aria-controls")).show().attr({"tabIndex" : 0, "aria-hidden" : "false"}).siblings(".tabpanel").hide().attr({"tabIndex" : -1, "aria-hidden" : "true"});
         }
         else {
             $target.addClass("active").attr({"tabIndex" : 0, "aria-selected" : "true"}).siblings().removeClass("active").attr({"tabIndex" : -1, "aria-selected" : "false"});
-            $("#"+$target.attr("aria-controls")).addClass("active").attr({"tabIndex" : 0, "aria-hidden" : "false"}).siblings(".tabpanel").removeClass("active").attr({"tabIndex" : -1, "aria-hidden" : "true"});
+            $("#"+$target.attr("aria-controls")).show().attr({"tabIndex" : 0, "aria-hidden" : "false"}).siblings(".tabpanel").hide().attr({"tabIndex" : -1, "aria-hidden" : "true"});
         }
-        swiperActive();
+        // swiperActive();
+        $(window).trigger("resize");
     }
     
     // webAcce slide btn click event
