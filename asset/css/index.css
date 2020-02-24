@@ -715,10 +715,10 @@ h3 {
       height: 50%; }
     #webAcce .web-slide-area .slide-bg {
       background: no-repeat center center;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; }
+      -webkit-background-size: contain;
+      -moz-background-size: contain;
+      -o-background-size: contain;
+      background-size: contain; }
       #webAcce .web-slide-area .slide-bg.bg1-1 {
         background-image: url("../images/accessibillity/acce1-1.jpg"); }
       #webAcce .web-slide-area .slide-bg.bg1-2 {
@@ -1116,6 +1116,9 @@ h3 {
       -o-transform: rotate(315deg);
       -ms-transform: rotate(315deg);
       transform: rotate(315deg); }
+
+.swiper-container-cube .swiper-slide {
+  width: 100% !important; }
 
 @-webkit-keyframes scrolldown {
   0% {
